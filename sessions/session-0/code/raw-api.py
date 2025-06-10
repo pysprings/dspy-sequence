@@ -1,8 +1,9 @@
-import openai
+from openai import OpenAI
 from utils import load_gsm8k_testset, evaluate
 
 def raw_api_predict(question):
-    response = openai.ChatCompletion.create(
+    client = OpenAI()
+    response = client.chat.completions.create(
         model="gpt-4.1-nano",
         messages=[
             {"role": "system", "content": "You are a math problem solver. Answer with just the final number."},

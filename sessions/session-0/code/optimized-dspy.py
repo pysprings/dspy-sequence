@@ -16,7 +16,7 @@ def main():
     
     # Optimize with BootstrapFewShotWithRandomSearch
     teleprompter = BootstrapFewShotWithRandomSearch(
-        metric=lambda example, pred: str(pred.answer) == str(example.answer),
+        metric=lambda example, pred, trace=None: str(pred.answer) == str(example.answer),
         max_bootstrapped_demos=4,
         max_labeled_demos=4,
         num_candidate_programs=10,

@@ -1,6 +1,5 @@
 from langgraph.graph import StateGraph, END
-from langgraph.types import CachePolicy, RetryPolicy
-from langgraph.cache.memory import InMemoryCache
+from langgraph.types import RetryPolicy
 from utils import load_gsm8k, evaluate
 from openai import OpenAI
 from typing import TypedDict
@@ -86,39 +85,24 @@ def extract_final_answer(response: str) -> str:
     return numbers[-1] if numbers else "ERROR"
 
 
-# Custom cache key function
-def math_cache_key(state: MathState) -> str:
-    """Generate cache key based on normalized question"""
-    normalized_question = state["question"].strip().lower()
-    return hashlib.md5(normalized_question.encode()).hexdigest()
-
-
 def langgraph_predict(question):
-    """Enhanced LangGraph prediction with caching and retry"""
-
-    # Create cache
-    cache = InMemoryCache()
+    """Enhanced LangGraph prediction with retry"""
 
     # Create retry policy for API failures
     retry_policy = RetryPolicy(
         max_attempts=3, backoff_factor=2.0, max_interval=30.0, jitter=True
     )
 
-    # Create cache policy
-    cache_policy = CachePolicy(key_func=math_cache_key, ttl=1800)  # 30 minutes
-
     workflow = StateGraph(MathState)
 
-    # Add node with cache and retry policies
-    workflow.add_node(
-        "solver", solve_math, retry=retry_policy, cache_policy=cache_policy
-    )
+    # Add node with retry policy
+    workflow.add_node("solver", solve_math, retry=retry_policy)
 
     workflow.set_entry_point("solver")
     workflow.add_edge("solver", END)
 
-    # Compile with cache
-    app = workflow.compile(cache=cache)
+    # Compile
+    app = workflow.compile()
 
     state = MathState(question=question, answer=None, attempts=0)
 
@@ -157,24 +141,6 @@ def main():
         print(f"Q: {question}")
         print(f"A: {result.answer}")
         print()
-
-    # Test caching by running the same question twice
-    print("Testing cache (same question twice):")
-    question = "What is 15% of 240?"
-
-    import time
-
-    start = time.time()
-    result1 = langgraph_predict(question)
-    time1 = time.time() - start
-
-    start = time.time()
-    result2 = langgraph_predict(question)
-    time2 = time.time() - start
-
-    print(f"First call: {result1.answer} (took {time1:.2f}s)")
-    print(f"Second call: {result2.answer} (took {time2:.2f}s)")
-    print(f"Speed improvement: {time1/time2:.1f}x faster on cached result")
 
     # Run evaluation
     print("\n=== Evaluation ===")

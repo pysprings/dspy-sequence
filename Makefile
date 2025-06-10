@@ -13,13 +13,17 @@ SOURCES := $(wildcard $(SRC_DIR)/session-*/presentation.md)
 # Generate corresponding HTML output file names in the dist directory
 TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.html,$(SOURCES))
 
-# Pandoc flags for reveal.js presentation with mermaid support.
-# This configuration uses reveal.js from a public CDN.
+# Pandoc flags for impress.js presentation with mermaid and MathJax support.
+# Assumes impress.js library is in 'assets/impress.js'.
+# CSS files (impress-style.css, sourcecode.css) are in 'assets/css'.
+# Template is 'templates/impress-template.html'.
 # You must install the mermaid-filter: npm install -g mermaid-filter
-PANDOC_FLAGS := -t revealjs -s \
-                --filter=$(MERMAID_FILTER) \
-                -V theme=sky \
-                -V revealjs-url=https://unpkg.com/reveal.js@4
+PANDOC_FLAGS := -s -t impress --toc \
+                --template=templates/impress-template.html \
+                -V css_path=../../assets/css \
+                -V impress_url=../../assets/impress.js \
+                --mathjax \
+                --filter=$(MERMAID_FILTER)
 export MERMAID_FILTER_FORMAT=svg
 
 # Phony targets do not represent files.

@@ -2,7 +2,7 @@
 
 # Tools
 PANDOC := pandoc
-MERMAID_FILTER := pandoc-mermaid
+MERMAID_FILTER := mermaid-filter
 
 # Directories
 SRC_DIR := sessions
@@ -15,7 +15,7 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.ht
 
 # Pandoc flags for reveal.js presentation with mermaid support.
 # This configuration uses reveal.js from a public CDN.
-# You must install the pandoc-mermaid filter: pip install pandoc-mermaid
+# You must install the mermaid-filter: npm install -g mermaid-filter
 PANDOC_FLAGS := -t revealjs -s \
                 --filter=$(MERMAID_FILTER) \
                 -V theme=black \

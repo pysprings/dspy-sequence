@@ -34,5 +34,23 @@ The series runs on the 2nd Tuesday of each month, starting in June 2025.
 ## Project Structure
 
 Each session's materials are located in a corresponding directory. The main
-presentation file for each session is `presentation.md`.
+presentation file for each session is `presentation.md`. Here's the directory
+structure:
+
+```
+.
+├── Makefile
+├── README.md
+└── sessions/
+    ├── session-0/
+    │   ├── presentation.md
+    │   └── code/
+    ├── session-1/
+    │   ├── presentation.md
+    │   └── code/
+    ...
+    └── session-11/
+        ├── presentation.md
+        └── code/
+```
 

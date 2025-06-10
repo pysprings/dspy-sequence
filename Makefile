@@ -16,7 +16,7 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.ht
 PANDOC_FLAGS := --filter pandoc-plot \
                 --embed-resources \
                 --standalone \
-                -H assets/css/hide-notes.css
+                -c assets/css/hide-notes.css
 
 # Phony targets do not represent files.
 .PHONY: all clean help

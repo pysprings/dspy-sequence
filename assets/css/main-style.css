@@ -1,0 +1,4 @@
+/* Hide speaker notes in Pandoc HTML output */
+.notes {
+    display: none !important;
+}

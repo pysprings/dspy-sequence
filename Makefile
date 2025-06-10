@@ -17,6 +17,7 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.pd
 # Uses LaTeX for math and code highlighting.
 # Example theme: Warsaw with colortheme seahorse.
 PANDOC_FLAGS := -s -t beamer \
+                --pdf-engine=xelatex \
                 -V theme:Warsaw \
                 -V colortheme:seahorse \
                 --listings # For code highlighting with the listings package

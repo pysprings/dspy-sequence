@@ -14,11 +14,9 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.ht
 
 # Pandoc flags for HTML presentation using pandoc-plot.
 PANDOC_FLAGS := --filter pandoc-plot \
+                --embed-resources \
                 --standalone \
-                --self-contained \
-                --toc \
-                -H assets/css/impress-style.css \
-                -H assets/css/sourcecode.css
+                --toc
 
 # Phony targets do not represent files.
 .PHONY: all clean help

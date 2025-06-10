@@ -4,30 +4,40 @@ from dspy.teleprompt import BootstrapFewShotWithRandomSearch
 
 # Load dataset
 ds = load_dataset("openai/gsm8k", "main")
-trainset = [dspy.Example(question=x['question'], answer=x['answer']).with_inputs('question') for x in ds['train']][:50]
-devset = [dspy.Example(question=x['question'], answer=x['answer']).with_inputs('question') for x in ds['test']][:10]
+trainset = [
+    dspy.Example(question=x["question"], answer=x["answer"]).with_inputs("question")
+    for x in ds["train"]
+][:50]
+devset = [
+    dspy.Example(question=x["question"], answer=x["answer"]).with_inputs("question")
+    for x in ds["test"]
+][:10]
+
 
 # Define metric
 def exact_match(example, prediction, trace=None):
     # Extract integer from answer string
     try:
-        pred_answer = prediction.answer.split('####')[-1].strip()
-        true_answer = example.answer.split('####')[-1].strip()
+        pred_answer = prediction.answer.split("####")[-1].strip()
+        true_answer = example.answer.split("####")[-1].strip()
         return pred_answer == true_answer
     except:
         return False
 
+
 # Configure DSPy
 dspy.configure(lm=dspy.LM("openai/gpt-4.1-nano", max_tokens=1000))
+
 
 # Define program
 class MathSolver(dspy.Module):
     def __init__(self):
         super().__init__()
         self.solve = dspy.ChainOfThought("question -> answer: int")
-    
+
     def forward(self, question):
         return self.solve(question=question)
+
 
 # Optimize program
 teleprompter = BootstrapFewShotWithRandomSearch(
@@ -35,7 +45,7 @@ teleprompter = BootstrapFewShotWithRandomSearch(
     max_bootstrapped_demos=4,
     max_labeled_demos=4,
     num_candidate_programs=10,
-    num_threads=4
+    num_threads=4,
 )
 
 math_solver = MathSolver()

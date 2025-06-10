@@ -1,4 +1,4 @@
-from utils import load_gsm8k_testset, evaluate
+from utils import load_gsm8k, evaluate
 import dspy
 from dspy.teleprompt import BootstrapFewShotWithRandomSearch
 
@@ -13,7 +13,8 @@ class MathSolver(dspy.Module):
 
 
 def main():
-    testset = load_gsm8k_testset(10)
+    testset = load_gsm8k(split='test', n=10, offset=0)
+    trainset = load_gsm8k(split='test', n=10, offset=10)
     dspy.configure(lm=dspy.LM("openai/gpt-4.1-nano", max_tokens=1000))
 
     # Optimize with BootstrapFewShotWithRandomSearch
@@ -27,7 +28,7 @@ def main():
     )
 
     solver = MathSolver()
-    optimized_solver = teleprompter.compile(solver, trainset=testset[:5])
+    optimized_solver = teleprompter.compile(solver, trainset=trainset)
 
     accuracy = evaluate(optimized_solver, testset)
     print(f"Optimized DSPy Accuracy: {accuracy:.2f}")

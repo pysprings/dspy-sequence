@@ -1,15 +1,15 @@
 from datasets import load_dataset
 import dspy
 
-def load_gsm8k_testset(n=10):
+def load_gsm8k(split='test', n=10, offset=0):
     ds = load_dataset("openai/gsm8k", "main")
-    testset = []
-    test_data = ds["test"].select(range(n))
-    for example_dict in test_data:
+    dataset = []
+    data = ds[split].select(range(offset, offset+n))
+    for example_dict in data:
         true_answer = example_dict["answer"].split("####")[-1].strip()
         example = dspy.Example(question=example_dict["question"], answer=true_answer).with_inputs("question")
-        testset.append(example)
-    return testset
+        dataset.append(example)
+    return dataset
 
 def evaluate(predict_fn, testset):
     correct = 0

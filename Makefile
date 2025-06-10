@@ -18,6 +18,7 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.pd
 # Example theme: Warsaw with colortheme seahorse.
 PANDOC_FLAGS := -s -t beamer \
                 --pdf-engine=xelatex \
+                -V mainfont="Noto Sans" \
                 -V theme:Warsaw \
                 -V colortheme:seahorse \
                 --listings # For code highlighting with the listings package

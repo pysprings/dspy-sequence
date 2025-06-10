@@ -112,7 +112,9 @@ blockquote {
 }
 
 /* For side-by-side mermaid diagram (in a figure) and following text/bullets */
-figure:has(img) { /* Assuming pandoc-plot converts the diagram to an <img> tag */
+/* Handles figures with embedded images or SVGs */
+figure:has(img),
+figure:has(svg) {
   float: left;
   width: 58%; /* Adjust width as needed */
   margin-right: 2%; /* Gutter space */
@@ -122,7 +124,9 @@ figure:has(img) { /* Assuming pandoc-plot converts the diagram to an <img> tag *
 
 /* Targets elements immediately following a figure containing an image to flow beside it */
 figure:has(img) + p,
-figure:has(img) + p + ul {
+figure:has(svg) + p,
+figure:has(img) + p + ul,
+figure:has(svg) + p + ul {
   overflow: hidden; /* Creates a new block formatting context to contain the flow */
 }
 
@@ -231,6 +235,13 @@ figure {
 figure img {
   border: none;
   margin: 0 auto;
+}
+
+figure svg {
+  display: block; /* Ensure block behavior for margin auto centering */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%; /* Responsive SVGs */
 }
 
 figcaption {

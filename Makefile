@@ -2,7 +2,6 @@
 
 # Tools
 PANDOC := pandoc
-MERMAID_FILTER := pandoc-mermaid
 
 # Directories
 SRC_DIR := sessions
@@ -22,7 +21,7 @@ PANDOC_FLAGS := -s -t beamer \
                 -V theme:Warsaw \
                 -V colortheme:seahorse \
                 --listings \
-                --filter=$(MERMAID_FILTER) # For code highlighting with the listings package
+                -F mermaid-filter
 
 # Phony targets do not represent files.
 .PHONY: all clean help

@@ -9,19 +9,16 @@ DIST_DIR := dist
 
 # Find all session markdown files named presentation.md
 SOURCES := $(wildcard $(SRC_DIR)/session-*/presentation.md)
-# Generate corresponding PDF output file names in the dist directory
-TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.pdf,$(SOURCES))
+# Generate corresponding HTML output file names in the dist directory
+TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.html,$(SOURCES))
 
-# Pandoc flags for Beamer PDF presentation.
-# Uses LaTeX for math and code highlighting.
-# Example theme: Warsaw with colortheme seahorse.
-PANDOC_FLAGS := -s -t beamer \
-                --pdf-engine=xelatex \
-                -V mainfont="Noto Sans" \
-                -V theme:Warsaw \
-                -V colortheme:seahorse \
-                --listings \
-                -F mermaid-filter
+# Pandoc flags for HTML presentation using pandoc-plot.
+PANDOC_FLAGS := --filter pandoc-plot \
+                --standalone \
+                --self-contained \
+                --toc \
+                -H assets/css/impress-style.css \
+                -H assets/css/sourcecode.css
 
 # Phony targets do not represent files.
 .PHONY: all clean help
@@ -31,15 +28,16 @@ all: $(TARGETS)
 
 # Pattern rule to build a single presentation.
 # Creates the destination directory if it doesn't exist.
-$(DIST_DIR)/session-%/presentation.pdf: $(SRC_DIR)/session-%/presentation.md
+$(DIST_DIR)/session-%/presentation.html: $(SRC_DIR)/session-%/presentation.md
 	@mkdir -p $(@D)
 	@echo "Building $< -> $@"
 	@$(PANDOC) $(PANDOC_FLAGS) -o $@ $<
 
 # Clean up all generated files.
 clean:
-	@echo "Cleaning up generated files in $(DIST_DIR)..."
+	@echo "Cleaning up generated files in $(DIST_DIR) and plots/ directory..."
 	@rm -rf $(DIST_DIR)
+	@rm -rf plots/
 
 # Display help information.
 help:

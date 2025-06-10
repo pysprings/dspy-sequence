@@ -5,10 +5,11 @@ from datasets import load_dataset
 ds = load_dataset("openai/gsm8k", "main")
 # Preprocess answers to extract just the final number
 testset = []
-for x in ds["test"][:10]:
+test_data = ds["test"].select(range(10))  # Get first 10 test examples
+for example_dict in test_data:
     # Extract the final answer number from the answer string
-    true_answer = x["answer"].split("####")[-1].strip()
-    example = dspy.Example(question=x["question"], answer=true_answer).with_inputs("question")
+    true_answer = example_dict["answer"].split("####")[-1].strip()
+    example = dspy.Example(question=example_dict["question"], answer=true_answer).with_inputs("question")
     testset.append(example)
 
 

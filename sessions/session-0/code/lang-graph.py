@@ -1,7 +1,7 @@
 from langgraph.graph import StateGraph, END
 from langgraph.types import CachePolicy, RetryPolicy
 from langgraph.cache.memory import InMemoryCache
-from utils import load_gsm8k_testset, evaluate
+from utils import load_gsm8k, evaluate
 from openai import OpenAI
 from typing import TypedDict
 import hashlib
@@ -178,7 +178,7 @@ def main():
 
     # Run evaluation
     print("\n=== Evaluation ===")
-    testset = load_gsm8k_testset(5)
+    testset = load_gsm8k(n=5)
     accuracy = evaluate(langgraph_predict, testset)
     print(f"Enhanced LangGraph Accuracy: {accuracy:.2f}")
 

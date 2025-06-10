@@ -34,10 +34,15 @@ deploy.
 ## The Black Box Challenge
 **"LLMs feel like magic boxes - you never know what you'll get"**
 
-```text
-[System Prompt] --\
-[User Prompt] ------> [LLM Black Box] ------> [Unpredictable Output]
-[Context/Examples] -/
+```mermaid
+graph LR
+    A[System Prompt] --> D[LLM Black Box]
+    B[User Prompt] --> D
+    C[Context/Examples] --> D
+    D --> E[Unpredictable Output]
+    
+    style D fill:#333,stroke:#fff,color:#fff
+    style E fill:#ff6b6b,stroke:#fff,color:#fff
 ```
 
 **Key Issues:**
@@ -64,29 +69,22 @@ providers.
 ## Current Development Pain Points
 **"Prompt engineering doesn't feel like programming"**
 
-```text
-      [Write Prompt]
-           |
-           v
-  [Test with Examples]
-           |
-           v
-  <Good Results?> --No--> [Tweak Prompt] --+
-      | Yes/Maybe           ^              |
-      v                     |              |
-[More Examples]             +----[Test Again]
-      |
-      v
-<Still Good?> --No--> (to Tweak Prompt)
-      | Yes
-      v
-[Ship to Production]
-      |
-      v
-[Silent Failures]
-      |
-      v
-[Emergency Prompt Surgery]
+```mermaid
+graph TD
+    A[Write Prompt] --> B[Test with Examples]
+    B --> C{Good Results?}
+    C -->|No| D[Tweak Prompt]
+    D --> E[Test Again]
+    E --> C
+    C -->|Maybe| F[More Examples]
+    F --> G{Still Good?}
+    G -->|No| D
+    G -->|Yes| H[Ship to Production]
+    H --> I[Silent Failures]
+    I --> J[Emergency Prompt Surgery]
+    
+    style I fill:#ff6b6b
+    style J fill:#ff6b6b
 ```
 
 **Pain Points:**
@@ -115,12 +113,19 @@ works for your use case.
 ## Fundamental Limitations  
 **"We're hitting the ceiling of manual optimization"**
 
-```text
-[Simple Tasks] ----> [Complex Workflows]
-[Manual Effort] ---> [Exponential Growth]
-
-Current Approach:
-  [Decomposition] -> [Context Management] -> [Multi-step Planning] -> [Quality Control] -> [Maintenance Nightmare]
+```mermaid
+graph LR
+    A[Simple Tasks] --> B[Complex Workflows]
+    C[Manual Effort] --> D[Exponential Growth]
+    
+    subgraph "Current Approach"
+        E[Decomposition] --> F[Context Management]
+        F --> G[Multi-step Planning]
+        G --> H[Quality Control]
+        H --> I[Maintenance Nightmare]
+    end
+    
+    style I fill:#ff6b6b
 ```
 
 **The Hard Questions:**
@@ -147,12 +152,24 @@ This is where we need to move from artisanal prompt crafting to systematic engin
 ## Signatures: Declaring What You Want
 **"Define your interface, not your implementation"**
 
-```text
-DSPy Signatures:
-  "question -> answer"            --> [Question Answering]
-  "document -> summary"           --> [Summarization]
-  "context, question -> answer" --> [RAG Systems]
-  "problem -> reasoning, answer"  --> [Chain of Thought]
+```mermaid
+graph TD
+    A["question -> answer"] --> B[Question Answering]
+    C["document -> summary"] --> D[Summarization]
+    E["context, question -> answer"] --> F[RAG Systems]
+    G["problem -> reasoning, answer"] --> H[Chain of Thought]
+    
+    subgraph "DSPy Signatures"
+        A
+        C
+        E
+        G
+    end
+    
+    style A fill:#4ecdc4
+    style C fill:#4ecdc4
+    style E fill:#4ecdc4
+    style G fill:#4ecdc4
 ```
 
 **Key Benefits:**
@@ -175,11 +192,22 @@ The magic is that DSPy takes your signature and figures out how to prompt the LM
 ## Modules: The Transformation Layer
 **"Familiar Python patterns for AI workflows"**
 
-```text
-[Input] -> [Retrieve Module (uses Signature)] -> [Reason Module (uses Signature)] -> [Generate Module (uses Signature)] -> [Output]
-
-Under the Hood (for each module):
-  [Signature] -> [Prompting Strategy] -> [LLM Call] -> [Output Parsing]
+```mermaid
+graph LR
+    A[Input] --> B[Retrieve Module]
+    B --> C[Reason Module]
+    C --> D[Generate Module]
+    D --> E[Output]
+    
+    subgraph "Under the Hood"
+        F[Signature] --> G[Prompting Strategy]
+        G --> H[LLM Call]
+        H --> I[Output Parsing]
+    end
+    
+    B -.-> F
+    C -.-> F
+    D -.-> F
 ```
 
 **Module Features:**
@@ -202,21 +230,29 @@ Under the hood, each module is figuring out the best way to prompt the LM for it
 ## Optimization: The Magic
 **"Your AI system gets better automatically"**
 
-```text
-[Training Examples] --\
-                       --> [DSPy Program] --> [Optimizer] --+
-[Evaluation Metric] --/      ^                             |
-                             |                             |
-                             +---- [Optimized Program] <---+---Yes--- <Best Found?>
-                                                                         | No
-                                                                         |
-                                                                         v
-                                     [Generate Candidates] -> [Test on Examples] -> [Score Results] ---+
-
-What Gets Optimized (by Optimizer):
-  - [Prompt Templates]
-  - [Few-shot Examples]
-  - [Reasoning Strategies]
+```mermaid
+graph TD
+    A[Training Examples] --> B[DSPy Program]
+    C[Evaluation Metric] --> B
+    B --> D[Optimizer]
+    D --> E[Generate Candidates]
+    E --> F[Test on Examples]
+    F --> G[Score Results]
+    G --> H{Best Found?}
+    H -->|No| E
+    H -->|Yes| I[Optimized Program]
+    
+    subgraph "What Gets Optimized"
+        J[Prompt Templates]
+        K[Few-shot Examples]
+        L[Reasoning Strategies]
+    end
+    
+    D -.-> J
+    D -.-> K
+    D -.-> L
+    
+    style I fill:#4ecdc4
 ```
 
 **Optimization Process:**
@@ -244,8 +280,16 @@ Cross-model optimization is huge - you can develop with GPT-4 and deploy on a sm
 ## Word Problem Solving Showcase
 **"Same task, three approaches - watch the magic happen"**
 
-```text
-[Manual Prompting (40% Acc)] -> [LangChain Template (55% Acc)] -> [DSPy Basic (70% Acc)] -> [DSPy Optimized (85% Acc)]
+```mermaid
+graph LR
+    A[Manual Prompting<br/>40% Accuracy] --> B[LangChain Template<br/>55% Accuracy]
+    B --> C[DSPy Basic<br/>70% Accuracy]
+    C --> D[DSPy Optimized<br/>85% Accuracy]
+    
+    style A fill:#ff6b6b
+    style B fill:#ffa726
+    style C fill:#66bb6a
+    style D fill:#4ecdc4
 ```
 
 **Demo Task:** *"Sarah has 5 apples. She buys 7 more apples from the store. How many apples does Sarah have now?"*
@@ -283,19 +327,27 @@ The key insight: DSPy code doesn't change between basic and optimized. The optim
 ## Framework Positioning
 **"DSPy plays well with others, but solves different problems"**
 
-```text
-                        [Your Application]
-                             / | \
-                            /  |  \
-                           v   v   v
-            [DSPy]     [LangChain]     [LlamaIndex]
-              |             |               |
-              v             v               v
-[Optimization Focus] [Integration Focus] [RAG Focus]
-
-[Data Sources] ----> [LangChain], [LlamaIndex]
-[Vector Stores] ---> [LangChain], [LlamaIndex]
-[LLM Providers] ---> [DSPy], [LangChain], [LlamaIndex]
+```mermaid
+graph TD
+    A[Your Application] --> B[DSPy]
+    A --> C[LangChain]
+    A --> D[LlamaIndex]
+    
+    B --> E[Optimization Focus]
+    C --> F[Integration Focus]
+    D --> G[RAG Focus]
+    
+    H[Data Sources] --> C
+    H --> D
+    
+    I[Vector Stores] --> C
+    I --> D
+    
+    J[LLM Providers] --> B
+    J --> C
+    J --> D
+    
+    style B fill:#4ecdc4
 ```
 
 **Framework Comparison:**
@@ -325,13 +377,18 @@ The "3 lines vs 30+ lines" isn't hyperbole. Show the math problem again - that's
 ## Getting Started Tonight
 **"You can start building with DSPy in 5 minutes"**
 
-```text
-[pip install dspy-ai] -> [Choose LLM] -> [Define Signature] -> [Build Module] -> [Test & Iterate]
-
-Tonight's Takeaway:
-  - [GitHub Repository]
-  - [Jupyter Notebooks]
-  - [Discord Community]
+```mermaid
+graph LR
+    A[pip install dspy-ai] --> B[Choose LLM]
+    B --> C[Define Signature]
+    C --> D[Build Module]
+    D --> E[Test & Iterate]
+    
+    subgraph "Tonight's Takeaway"
+        F[GitHub Repository]
+        G[Jupyter Notebooks]
+        H[Discord Community]
+    end
 ```
 
 **Quick Start:**
@@ -363,27 +420,29 @@ The Discord is where the real learning happens between sessions. We'll have chan
 ## The 12-Month Deep Dive
 **"We're building mastery together, step by step"**
 
-```text
-DSPy Mastery Timeline:
-
-Foundation:
-  LM Setup           (2025-07, 1 month)
-  Data Collection    (2025-08, 1 month)
-  Signatures         (2025-09, 1 month)
-
-Core Skills:
-  Adapters           (2025-10, 1 month)
-  Basic Modules      (2025-11, 1 month)
-  Metrics            (2025-12, 1 month)
-
-Advanced:
-  Optimization       (2026-01, 1 month)
-  Advanced Modules   (2026-02, 1 month)
-  Assertions         (2026-03, 1 month)
-
-Production:
-  Trackers           (2026-04, 1 month)
-  Retrospective      (2026-05, 1 month)
+```mermaid
+gantt
+    title DSPy Mastery Timeline
+    dateFormat  YYYY-MM
+    
+    section Foundation
+    LM Setup           :2025-07, 1M
+    Data Collection    :2025-08, 1M
+    Signatures         :2025-09, 1M
+    
+    section Core Skills
+    Adapters           :2025-10, 1M
+    Basic Modules      :2025-11, 1M
+    Metrics            :2025-12, 1M
+    
+    section Advanced
+    Optimization       :2026-01, 1M
+    Advanced Modules   :2026-02, 1M
+    Assertions         :2026-03, 1M
+    
+    section Production
+    Trackers           :2026-04, 1M
+    Retrospective      :2026-05, 1M
 ```
 
 **Learning Path:**
@@ -412,19 +471,20 @@ Notice there's no "advanced prompting" session. That's the point - DSPy abstract
 ## Community Engagement
 **"We're pioneering this learning path together"**
 
-```text
-Cycle 1:
-  [Monthly Sessions] -> [Hands-on Projects] -> [Community Feedback] -> [Curriculum Refinement] -+
-    ^                                                                                         |
-    +-----------------------------------------------------------------------------------------+
-
-Cycle 2:
-  [Discord Discussions] -> [Shared Challenges] -> [Collaborative Solutions] -> [Best Practices] -+
-    ^                                                                                            |
-    +--------------------------------------------------------------------------------------------+
-
-(Hands-on Projects also feed into Discord Discussions)
-(Community Feedback also feeds into Shared Challenges)
+```mermaid
+graph TD
+    A[Monthly Sessions] --> B[Hands-on Projects]
+    B --> C[Community Feedback]
+    C --> D[Curriculum Refinement]
+    D --> A
+    
+    E[Discord Discussions] --> F[Shared Challenges]
+    F --> G[Collaborative Solutions]
+    G --> H[Best Practices]
+    H --> E
+    
+    B -.-> E
+    C -.-> F
 ```
 
 **Your Role in the Community:**

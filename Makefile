@@ -18,7 +18,7 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.ht
 # You must install the mermaid-filter: npm install -g mermaid-filter
 PANDOC_FLAGS := -t revealjs -s \
                 --filter=$(MERMAID_FILTER) \
-                -V theme=black \
+                -V theme=sky \
                 -V revealjs-url=https://unpkg.com/reveal.js@4
 
 # Phony targets do not represent files.

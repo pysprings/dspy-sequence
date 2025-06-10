@@ -111,24 +111,17 @@ blockquote {
   border-left: 0.5em #EEE solid;
 }
 
-/* For side-by-side mermaid diagram (in a figure) and following text/bullets */
-/* Handles figures with embedded images or SVGs */
+/* Figures with embedded images or SVGs. */
+/* Floats removed; figures now display as standard block elements, taking available width. */
+/* Images/SVGs within are centered and responsive due to other existing rules. */
 figure:has(img),
 figure:has(svg) {
-  float: left;
-  width: 58%; /* Adjust width as needed */
-  margin-right: 2%; /* Gutter space */
-  margin-bottom: 1em; /* Space below diagram if text on right is shorter */
-  box-sizing: border-box;
+  /* float, width, and margin-right properties removed for full-width block display */
+  margin-bottom: 1em; /* Retain space below diagram */
+  box-sizing: border-box; /* Retain for consistent box model behavior */
 }
 
-/* Targets elements immediately following a figure containing an image to flow beside it */
-figure:has(img) + p,
-figure:has(svg) + p,
-figure:has(img) + p + ul,
-figure:has(svg) + p + ul {
-  overflow: hidden; /* Creates a new block formatting context to contain the flow */
-}
+/* Rules for text flow around previously floated figures have been removed. */
 
 hr {
   display: block;

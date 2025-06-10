@@ -20,6 +20,7 @@ PANDOC_FLAGS := -t revealjs -s \
                 --filter=$(MERMAID_FILTER) \
                 -V theme=sky \
                 -V revealjs-url=https://unpkg.com/reveal.js@4
+export MERMAID_FILTER_FORMAT=svg
 
 # Phony targets do not represent files.
 .PHONY: all clean help

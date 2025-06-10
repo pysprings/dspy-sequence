@@ -19,7 +19,7 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.ht
 PANDOC_FLAGS := -t revealjs -s \
                 --filter=$(MERMAID_FILTER) \
                 -V theme=black \
-                -V revealjs-url=https://unpkg.com/reveal.js@4/
+                -V revealjs-url=https://unpkg.com/reveal.js@4/dist/
 
 # Phony targets do not represent files.
 .PHONY: all clean help

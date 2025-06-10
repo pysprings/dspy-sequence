@@ -10,21 +10,16 @@ DIST_DIR := dist
 
 # Find all session markdown files named presentation.md
 SOURCES := $(wildcard $(SRC_DIR)/session-*/presentation.md)
-# Generate corresponding HTML output file names in the dist directory
-TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.html,$(SOURCES))
+# Generate corresponding PDF output file names in the dist directory
+TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.pdf,$(SOURCES))
 
-# Pandoc flags for impress.js presentation with mermaid and MathJax support.
-# Assumes impress.js library is in 'assets/impress.js'.
-# CSS files (impress-style.css, sourcecode.css) are in 'assets/css'.
-# Template is 'templates/impress-template.html'.
-# You must install the mermaid-filter: npm install -g mermaid-filter
-PANDOC_FLAGS := -s -t html5 --section-divs --toc \
-                --template=templates/impress-template.html \
-                -V css_path=../../assets/css \
-                -V impress_url=../../assets/impress.js \
-                --mathjax \
-                --filter=$(MERMAID_FILTER)
-export MERMAID_FILTER_FORMAT=svg
+# Pandoc flags for Beamer PDF presentation.
+# Uses LaTeX for math and code highlighting.
+# Example theme: Warsaw with colortheme seahorse.
+PANDOC_FLAGS := -s -t beamer \
+                -V theme:Warsaw \
+                -V colortheme:seahorse \
+                --listings # For code highlighting with the listings package
 
 # Phony targets do not represent files.
 .PHONY: all clean help
@@ -34,7 +29,7 @@ all: $(TARGETS)
 
 # Pattern rule to build a single presentation.
 # Creates the destination directory if it doesn't exist.
-$(DIST_DIR)/session-%/presentation.html: $(SRC_DIR)/session-%/presentation.md
+$(DIST_DIR)/session-%/presentation.pdf: $(SRC_DIR)/session-%/presentation.md
 	@mkdir -p $(@D)
 	@echo "Building $< -> $@"
 	@$(PANDOC) $(PANDOC_FLAGS) -o $@ $<

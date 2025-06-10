@@ -30,14 +30,19 @@ for i, example in enumerate(testset):
     print(f"Question: {question}")
     print(f"Prediction: {prediction.answer}")
     
-    # Use DSPy's built-in exact match evaluation
-    is_correct = dspy.evaluate.answer_exact_match(example, prediction) == 1.0
+    # Convert both answers to strings for comparison
+    true_answer_str = str(example.answer)
+    pred_answer_str = str(prediction.answer)
+    
+    # Simple string comparison
+    is_correct = true_answer_str == pred_answer_str
     if is_correct:
         correct += 1
         print("✅ Correct")
     else:
         print("❌ Incorrect")
-        print(f"True answer: {example.answer}")
+        print(f"True answer: {true_answer_str}")
+        print(f"Predicted answer: {pred_answer_str}")
 
 # Print evaluation results
 print(f"Evaluation results:")

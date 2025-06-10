@@ -18,7 +18,7 @@ TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.ht
 # CSS files (impress-style.css, sourcecode.css) are in 'assets/css'.
 # Template is 'templates/impress-template.html'.
 # You must install the mermaid-filter: npm install -g mermaid-filter
-PANDOC_FLAGS := -s -t impress --toc \
+PANDOC_FLAGS := -s -t html5 --section-divs --toc \
                 --template=templates/impress-template.html \
                 -V css_path=../../assets/css \
                 -V impress_url=../../assets/impress.js \

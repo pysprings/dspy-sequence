@@ -111,6 +111,21 @@ blockquote {
   border-left: 0.5em #EEE solid;
 }
 
+/* For side-by-side mermaid diagram (in a figure) and following text/bullets */
+figure:has(div.mermaid) {
+  float: left;
+  width: 58%; /* Adjust width as needed */
+  margin-right: 2%; /* Gutter space */
+  margin-bottom: 1em; /* Space below diagram if text on right is shorter */
+  box-sizing: border-box;
+}
+
+/* Targets elements immediately following a figure containing a mermaid diagram to flow beside it */
+figure:has(div.mermaid) + p,
+figure:has(div.mermaid) + p + ul {
+  overflow: hidden; /* Creates a new block formatting context to contain the flow */
+}
+
 hr {
   display: block;
   height: 2px;
@@ -119,6 +134,7 @@ hr {
   border-bottom: 1px solid #eee;
   margin: 1em 0;
   padding: 0;
+  clear: both; /* Add this to clear floats from previous content */
 }
 
 pre, code, kbd, samp {

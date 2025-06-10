@@ -1,12 +1,18 @@
 # DSPy Mastery Series
 
-This repository contains the presentation materials for the PySprings "DSPy Mastery Series," a 12-month structured exploration of the DSPy framework.
+This repository contains the presentation materials for the PySprings "DSPy
+Mastery Series," a 12-month structured exploration of the DSPy framework.
 
 ## About the Series
 
-We're launching a structured 12-month exploration of DSPy, the framework that applies familiar Python patterns to AI systems. Instead of manual prompt engineering, DSPy enables declarative programming where you specify what you want and the system automatically optimizes how to achieve it.
+We're launching a structured 12-month exploration of DSPy, the framework that
+applies familiar Python patterns to AI systems. Instead of manual prompt
+engineering, DSPy enables declarative programming where you specify what you
+want and the system automatically optimizes how to achieve it.
 
-This curriculum is being developed collaboratively—your feedback, questions, and real-world applications will shape the content as we pioneer this learning path together.
+This curriculum is being developed collaboratively—your feedback, questions,
+and real-world applications will shape the content as we pioneer this learning
+path together.
 
 ## Schedule
 
@@ -27,5 +33,6 @@ The series runs on the 2nd Tuesday of each month, starting in June 2025.
 
 ## Project Structure
 
-Each session's materials are located in a corresponding directory. The main presentation file for each session is `presentation.md`.
+Each session's materials are located in a corresponding directory. The main
+presentation file for each session is `presentation.md`.
 

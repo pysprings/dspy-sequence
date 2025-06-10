@@ -11,7 +11,7 @@ DIST_DIR := dist
 # Find all session markdown files named presentation.md
 SOURCES := $(wildcard $(SRC_DIR)/session-*/presentation.md)
 # Generate corresponding HTML output file names in the dist directory
-TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%.html,$(SOURCES))
+TARGETS := $(patsubst $(SRC_DIR)/%/presentation.md,$(DIST_DIR)/%/presentation.html,$(SOURCES))
 
 # Pandoc flags for reveal.js presentation with mermaid support.
 # This configuration uses reveal.js from a public CDN.

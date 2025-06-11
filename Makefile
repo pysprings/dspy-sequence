@@ -5,7 +5,7 @@ PANDOC := pandoc
 
 # Directories
 SRC_DIR := sessions
-DIST_DIR := dist
+DIST_DIR := docs
 
 # Find all session markdown files named presentation.md
 SOURCES := $(wildcard $(SRC_DIR)/session-*/presentation.md)

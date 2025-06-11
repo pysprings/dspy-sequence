@@ -1,5 +1,5 @@
 from openai import OpenAI
-from utils import load_gsm8k_testset, evaluate
+from utils import load_gsm8k, evaluate
 
 def raw_api_predict(question):
     client = OpenAI()
@@ -18,7 +18,7 @@ def raw_api_predict(question):
     return Prediction(response.choices[0].message.content.strip())
 
 def main():
-    testset = load_gsm8k_testset(10)
+    testset = load_gsm8k()
     accuracy = evaluate(raw_api_predict, testset)
     print(f"Raw API Accuracy: {accuracy:.2f}")
 

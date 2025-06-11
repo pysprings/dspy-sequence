@@ -282,9 +282,9 @@ Cross-model optimization is huge - you can develop with GPT-4 and deploy on a sm
 
 ```mermaid
 graph LR
-    A[Manual Prompting<br/>40% Accuracy] --> B[LangChain Template<br/>55% Accuracy]
-    B --> C[DSPy Basic<br/>70% Accuracy]
-    C --> D[DSPy Optimized<br/>85% Accuracy]
+    A[Manual Prompting] --> B[LangChain Template]
+    B --> C[DSPy Basic]
+    C --> D[DSPy Optimized]
     
     style A fill:#ff6b6b
     style B fill:#ffa726
@@ -311,6 +311,7 @@ print(f"Reasoning: {result.reasoning}")
 ```
 
 ::: notes
+
 Now let's see this in action. I'm going to solve the same math problem using three different approaches, and you'll see the progression in both code simplicity and accuracy.
 
 [LIVE DEMO]
@@ -351,6 +352,7 @@ graph TD
 ```
 
 **Framework Comparison:**
+
 - **LangChain**: Great for integrations and complex workflows
 - **LlamaIndex**: Excellent for RAG and document processing  
 - **DSPy**: Focus on systematic optimization and quality
@@ -392,6 +394,7 @@ graph LR
 ```
 
 **Quick Start:**
+
 - Minimal setup: `pip install dspy-ai`
 - Works with OpenAI, Anthropic, local models, and more
 - Start with simple signatures: `"input -> output"`
@@ -399,6 +402,7 @@ graph LR
 - Join the Discord for daily discussions
 
 ### Tonight's Challenge:
+
 Pick a simple task you currently solve with prompts and rewrite it as a DSPy signature!
 
 ::: notes
@@ -446,6 +450,7 @@ gantt
 ```
 
 **Learning Path:**
+
 - Each session builds on the previous
 - Hands-on coding every month
 - Real projects, not just examples
@@ -467,127 +472,3 @@ Notice there's no "advanced prompting" session. That's the point - DSPy abstract
 :::
 
 ---
-
-## Community Engagement
-**"We're pioneering this learning path together"**
-
-```mermaid
-graph TD
-    A[Monthly Sessions] --> B[Hands-on Projects]
-    B --> C[Community Feedback]
-    C --> D[Curriculum Refinement]
-    D --> A
-    
-    E[Discord Discussions] --> F[Shared Challenges]
-    F --> G[Collaborative Solutions]
-    G --> H[Best Practices]
-    H --> E
-    
-    B -.-> E
-    C -.-> F
-```
-
-**Your Role in the Community:**
-- Your questions shape future content
-- Share real-world use cases and challenges  
-- Discord for between-session discussions
-- GitHub for code examples and contributions
-- This is a collaborative learning experiment
-
-**Call to Action:**
-- Join the Discord tonight: [link]
-- Star the GitHub repository: [link]
-- Bring a real project challenge to July's session
-- Help us pioneer systematic AI development with Python
-
-::: notes
-This is crucial - we're not just teaching DSPy, we're figuring out how to teach DSPy. The curriculum will evolve based on what you're actually trying to build.
-
-If everyone's struggling with RAG applications, we'll spend more time there. If you're all interested in agents, we'll dive deeper into ReAct modules.
-
-The Discord isn't just for questions - it's for sharing victories, debugging together, and building a community of practice around systematic AI development.
-
-By the end of this journey, we'll have not just learned DSPy, but created a replicable learning path for other Python developers making the transition to AI.
-:::
-
----
-
-# Conclusion
-
-## The Promise We're Making
-*"Ready to wrangle some serious AI magic, Pythoneers! 🐍⚡"*
-
-**What You'll Gain:**
-- Systematic approach to AI development
-- Production-ready skills, not just prototypes
-- Community of practitioners solving real problems
-- Confidence to build AI systems that actually work
-
-**What We Need From You:**
-- Bring real challenges, not just toy examples
-- Share your failures as much as your successes
-- Help shape this learning journey
-
-**Next Steps:**
-1. Install DSPy tonight: `pip install dspy-ai`
-2. Join our Discord community
-3. Try converting one prompt to a signature
-4. Come to July's session with questions and projects
-
----
-
-## Questions & Discussion
-
-*Let's start building the future of AI development together*
-
-**Discord:** [community-link]  
-**GitHub:** [repository-link]  
-**Next Session:** July 9th, 2025 - "LM Setup: Gateway to AI Services"
-
-::: notes
-Alright, let's open this up. I want to hear:
-
-1. What AI problems are you currently trying to solve?
-2. Where do you get stuck with current tools?
-3. What are you most excited about in this journey?
-4. What are you most worried about?
-
-Remember, this is a collaborative experiment. Your input tonight shapes what we build together over the next year.
-
-And don't leave without joining the Discord - that's where the real learning community lives.
-
-Ready to move beyond prompt archaeology and into systematic AI development? Let's do this! 🐍⚡
-:::
-
----
-
-## Presenter Notes & Setup Instructions
-
-### Technical Setup Required:
-- Python 3.9+ environment
-- `pip install dspy-ai` (corrected from previous versions)
-- OpenAI API key for live demos
-- Backup: Local model setup (Ollama + Llama)
-
-### Live Demo Materials:
-- Math problem examples ready
-- Manual prompt version prepared
-- LangChain comparison code
-- DSPy version with before/after optimization
-
-### Community Links:
-- Discord server: [To be created]
-- GitHub repository: [To be created] 
-- Session recordings: [Location TBD]
-
-### Key Messaging Reminders:
-1. **DSPy is not anti-LangChain** - emphasize complementary nature
-2. **Start simple** - don't overwhelm with advanced features
-3. **Real problems only** - discourage toy examples
-4. **Community-driven** - this curriculum evolves based on participant needs
-
-### Follow-up Actions:
-- Create Discord server before session
-- Set up GitHub repository with tonight's examples
-- Prepare July session based on tonight's feedback
-- Document participant challenges and questions for curriculum planning

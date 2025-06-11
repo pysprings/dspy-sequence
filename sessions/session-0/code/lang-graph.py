@@ -144,7 +144,7 @@ def main():
 
     # Run evaluation
     print("\n=== Evaluation ===")
-    testset = load_gsm8k(n=5)
+    testset = load_gsm8k()
     accuracy = evaluate(langgraph_predict, testset)
     print(f"Enhanced LangGraph Accuracy: {accuracy:.2f}")
 

@@ -377,8 +377,7 @@ display: none !important;
 <h1 id="session-1-lm-setup---gateway-to-ai-services">Session 1: LM Setup
 - Gateway to AI Services</h1>
 <p><em>DSPy Mastery Series - Month 1 - July 2025</em></p>
-<h2 id="opening-context-setting-10-mins">1. Opening &amp; Context
-Setting (10 mins)</h2>
+<h2 id="opening-context-setting">1. Opening &amp; Context Setting</h2>
 <p>Welcome to the DSPy Mastery Series! We’re embarking on a 12-month
 journey to master systematic AI development using Python patterns you
 already know. Today we start with the foundation: the LM (Language
@@ -389,10 +388,12 @@ interface that lets you talk to any AI provider using the same Python
 code. Just like <code>requests.get()</code> works whether you’re calling
 GitHub’s API or a weather service, <code>dspy.LM</code> works whether
 you’re using OpenAI, Anthropic, or local models.</p>
-<p><strong>Session Goals:</strong> - Understand LM as your gateway to AI
-services - Grasp the architecture without getting lost in complexity</p>
-<h2 id="hello-world-with-dspy-lm-15-mins">2. Hello World with DSPy LM
-(15 mins)</h2>
+<p><strong>Session Goals:</strong></p>
+<ul>
+<li>Understand LM as your gateway to AI services</li>
+<li>Grasp the architecture without getting lost in complexity</li>
+</ul>
+<h2 id="hello-world-with-dspy-lm">2. Hello World with DSPy LM</h2>
 <p>Let’s start with an example.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dspy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -408,8 +409,7 @@ services - Grasp the architecture without getting lost in complexity</p>
 <p><strong>Key Takeaway:</strong> DSPy makes AI integration as simple as
 any other Python library - no complex setup, no vendor-specific APIs to
 learn.</p>
-<h2 id="unpacking-the-lm-class-20-mins">3. Unpacking the LM Class (20
-mins)</h2>
+<h2 id="unpacking-the-lm-class">3. Unpacking the LM Class</h2>
 <p>Now let’s understand what’s happening under the hood, using some
 “cartoonified code”:</p>
 <h3 id="the-lm-class-simplified">The LM Class (Simplified)</h3>
@@ -509,8 +509,7 @@ provides the common interface:</p>
 (<code>dspy.Predict</code>, <code>dspy.ChainOfThought</code>, etc.) uses
 the configured LM under the hood. It’s the universal translator between
 your Python code and AI services.</p>
-<h2 id="the-openrouter-ecosystem-15-mins">4. The OpenRouter Ecosystem
-(15 mins)</h2>
+<h2 id="the-openrouter-ecosystem">4. The OpenRouter Ecosystem</h2>
 <p>OpenRouter is like a universal broker for AI models - one API to
 access hundreds of AI models through a single endpoint. Think of it as
 the “Amazon for AI models” - instead of managing subscriptions and APIs
@@ -609,21 +608,33 @@ to change their behavior:</p>
 </tbody>
 </table>
 <h3 id="spectrum-of-capabilities">Spectrum of Capabilities</h3>
-<p><strong>Speed Demons (Fast &amp; Cheap):</strong> -
-<code>openrouter/openai/gpt-4o-mini</code> - OpenAI’s efficient model -
-<code>openrouter/anthropic/claude-3-haiku-20240307</code> - Anthropic’s
-fastest - <code>openrouter/google/gemini-1.5-flash</code> - Google’s
-speed champion</p>
-<p><strong>Powerhouses (Complex Reasoning):</strong> -
-<code>openrouter/openai/o3</code> - OpenAI’s flagship -
-<code>openrouter/anthropic/claude-3-5-sonnet-20241022</code> - Top
-reasoning model - <code>openrouter/google/gemini-2.5-pro</code> -
-Google’s advanced model</p>
-<p><strong>Local Options (Privacy &amp; Cost Control):</strong> -
-<code>ollama/llama3.2:1b</code> - Lightweight local model -
-<code>ollama/llama3.2:3b</code> - Balanced local option</p>
-<p><strong>Specialized Models:</strong> - Models fine-tuned for coding,
-math, specific domains - Access to 400+ AI models through one API</p>
+<p><strong>Speed Demons (Fast &amp; Cheap):</strong></p>
+<ul>
+<li><code>openrouter/openai/gpt-4o-mini</code> - OpenAI’s efficient
+model</li>
+<li><code>openrouter/anthropic/claude-3-haiku-20240307</code> -
+Anthropic’s fastest</li>
+<li><code>openrouter/google/gemini-1.5-flash</code> - Google’s speed
+champion</li>
+</ul>
+<p><strong>Powerhouses (Complex Reasoning):</strong></p>
+<ul>
+<li><code>openrouter/openai/o3</code> - OpenAI’s flagship</li>
+<li><code>openrouter/anthropic/claude-3-5-sonnet-20241022</code> - Top
+reasoning model</li>
+<li><code>openrouter/google/gemini-2.5-pro</code> - Google’s advanced
+model</li>
+</ul>
+<p><strong>Local Options (Privacy &amp; Cost Control):</strong></p>
+<ul>
+<li><code>ollama/llama3.2:1b</code> - Lightweight local model</li>
+<li><code>ollama/llama3.2:3b</code> - Balanced local option</li>
+</ul>
+<p><strong>Specialized Models:</strong></p>
+<ul>
+<li>Models fine-tuned for coding, math, specific domains</li>
+<li>Access to 400+ AI models through one API</li>
+</ul>
 <h3 id="enterprise-grade-features">Enterprise-Grade Features</h3>
 <p>OpenRouter’s enterprise edition provides expanded technical support,
 high rate limits and optimizations designed to reduce AI applications’
@@ -644,11 +655,15 @@ OpenRouter</h3>
 with annualized inference spending managed by the platform topping $100
 million. The platform runs at the edge, adding just ~25ms between users
 and their inference.</p>
-<p><strong>For Python Developers, This Means:</strong> - Write once, run
-anywhere (any AI provider) - Built-in reliability and fallbacks - Cost
-optimization without complexity - No vendor lock-in - Production-ready
-from day one</p>
-<h2 id="practical-examples-20-mins">5. Practical Examples (20 mins)</h2>
+<p><strong>For Python Developers, This Means:</strong></p>
+<ul>
+<li>Write once, run anywhere (any AI provider)</li>
+<li>Built-in reliability and fallbacks</li>
+<li>Cost optimization without complexity</li>
+<li>No vendor lock-in</li>
+<li>Production-ready from day one</li>
+</ul>
+<h2 id="practical-examples">5. Practical Examples</h2>
 <h3 id="cli-based-chatbot">CLI-Based Chatbot</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dspy</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -703,8 +718,8 @@ Example (Ctrl-L Style)</h3>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(answer.answer)</span></code></pre></div>
 <p><strong>Live Coding Opportunity:</strong> Build one of these examples
 with the audience, taking suggestions for modifications.</p>
-<h2 id="performance-production-considerations-10-mins">6. Performance
-&amp; Production Considerations (10 mins)</h2>
+<h2 id="performance-production-considerations">6. Performance &amp;
+Production Considerations</h2>
 <h3 id="caching-your-secret-weapon">Caching: Your Secret Weapon</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Caching enabled by default - saves money!</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>, cache<span class="op">=</span><span class="va">True</span>)</span>
@@ -714,9 +729,13 @@ with the audience, taking suggestions for modifications.</p>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Second identical call - returns cached result (free!)</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>response2 <span class="op">=</span> lm(<span class="st">&quot;What is 2+2?&quot;</span>)  <span class="co"># No API call made</span></span></code></pre></div>
-<p><strong>Two Levels of Caching:</strong> - <strong>LiteLLM-level
-caching:</strong> Persistent across program runs - <strong>In-memory
-caching:</strong> Fast LRU cache for repeated calls within session</p>
+<p><strong>Two Levels of Caching:</strong></p>
+<ul>
+<li><strong>LiteLLM-level caching:</strong> Persistent across program
+runs</li>
+<li><strong>In-memory caching:</strong> Fast LRU cache for repeated
+calls within session</li>
+</ul>
 <h3 id="history-tracking">History Tracking</h3>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lm(<span class="st">&quot;Hello, world!&quot;</span>)</span>
@@ -732,15 +751,16 @@ caching:</strong> Fast LRU cache for repeated calls within session</p>
 leaks. In production, consider:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Disable global history tracking</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dspy.settings.disable_history <span class="op">=</span> <span class="va">True</span></span></code></pre></div>
-<h2 id="integration-landscape-10-mins">7. Integration Landscape (10
-mins)</h2>
+<h2 id="integration-landscape">7. Integration Landscape</h2>
 <h3 id="litellm-the-universal-translator">LiteLLM: The Universal
 Translator</h3>
-<p>DSPy uses LiteLLM under the hood, which means you get: - <strong>100+
-models</strong> from 20+ providers - <strong>Unified interface</strong>
-regardless of provider - <strong>Built-in retry logic</strong> with
-exponential backoff - <strong>Automatic rate limiting</strong> and error
-handling</p>
+<p>DSPy uses LiteLLM under the hood, which means you get:</p>
+<ul>
+<li><strong>100+ models</strong> from 20+ providers</li>
+<li><strong>Unified interface</strong> regardless of provider</li>
+<li><strong>Built-in retry logic</strong> with exponential backoff</li>
+<li><strong>Automatic rate limiting</strong> and error handling</li>
+</ul>
 <h3 id="http-interfaces-and-streaming">HTTP Interfaces and
 Streaming</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic completion</span></span>
@@ -766,7 +786,7 @@ Streaming</h3>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Same code works with both!</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> dspy.context(lm<span class="op">=</span>prod_lm):</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> dspy.Predict(<span class="st">&quot;question -&gt; answer&quot;</span>)(question<span class="op">=</span><span class="st">&quot;Deploy!&quot;</span>)</span></code></pre></div>
-<h2 id="oddities-gotchas-5-mins">8. Oddities &amp; Gotchas (5 mins)</h2>
+<h2 id="oddities-gotchas">8. Oddities &amp; Gotchas</h2>
 <h3 id="model-specific-configurations">Model-Specific
 Configurations</h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI&#39;s reasoning models (o1, o3) have special requirements</span></span>
@@ -792,8 +812,7 @@ truncated</li>
 <li>Model routing and fallbacks</li>
 <li>Usage analytics and cost tracking</li>
 </ul>
-<h2 id="testing-serialization-5-mins">9. Testing &amp; Serialization (5
-mins)</h2>
+<h2 id="testing-serialization">9. Testing &amp; Serialization</h2>
 <h3 id="built-in-testing-support">Built-in Testing Support</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy models with different parameters</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>test_lm <span class="op">=</span> lm.copy(temperature<span class="op">=</span><span class="fl">0.8</span>, max_tokens<span class="op">=</span><span class="dv">100</span>)</span>
@@ -806,32 +825,43 @@ mins)</h2>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>deterministic_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>, temperature<span class="op">=</span><span class="fl">0.0</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Same input always produces same output (when temperature=0.0)</span></span></code></pre></div>
-<h2 id="session-wrap-next-steps-5-mins">10. Session Wrap &amp; Next
-Steps (5 mins)</h2>
+<h2 id="session-wrap-next-steps">10. Session Wrap &amp; Next Steps</h2>
 <h3 id="key-takeaways">Key Takeaways</h3>
 <p><strong>LM as Your AI Gateway:</strong> The <code>dspy.LM</code>
 class abstracts away provider complexity while giving you access to the
 entire AI ecosystem. It’s designed to be simple for basic use cases yet
 powerful enough for complex applications.</p>
-<p><strong>The Three-Layer Stack:</strong> 1. <strong>LM Layer:</strong>
-Handles provider communication (today’s focus) 2. <strong>Module
-Layer:</strong> Reusable AI components (next month) 3.
-<strong>Optimization Layer:</strong> Automatic improvement (later in
-series)</p>
+<p><strong>The Three-Layer Stack:</strong></p>
+<ol type="1">
+<li><strong>LM Layer:</strong> Handles provider communication (today’s
+focus)</li>
+<li><strong>Module Layer:</strong> Reusable AI components (next
+month)</li>
+<li><strong>Optimization Layer:</strong> Automatic improvement (later in
+series)</li>
+</ol>
 <h3 id="preview-of-month-2-data-collection">Preview of Month 2: Data
 Collection</h3>
 <p>Next month we’ll explore how DSPy handles the foundation of all AI
-systems: data. We’ll cover: - Training data formats and collection -
-Validation and test set creation - Data preprocessing pipelines -
-Quality metrics and filtering</p>
+systems: data. We’ll cover:</p>
+<ul>
+<li>Training data formats and collection</li>
+<li>Validation and test set creation</li>
+<li>Data preprocessing pipelines</li>
+<li>Quality metrics and filtering</li>
+</ul>
 <h3 id="questions-and-collaborative-feedback">Questions and
 Collaborative Feedback</h3>
 <p><em>This curriculum is being developed collaboratively - your
 feedback shapes the content as we pioneer this learning path
 together.</em></p>
-<p><strong>Action Items:</strong> 1. Set up DSPy in your local
-environment 2. Try the examples with your own prompts 3. Experiment with
-different model providers 4. Share your use cases for next session</p>
+<p><strong>Action Items:</strong></p>
+<ol type="1">
+<li>Set up DSPy in your local environment</li>
+<li>Try the examples with your own prompts</li>
+<li>Experiment with different model providers</li>
+<li>Share your use cases for next session</li>
+</ol>
 <hr />
 <p><strong>Remember:</strong> Every expert was once a beginner. Today
 you’ve taken the first step toward systematic AI development with

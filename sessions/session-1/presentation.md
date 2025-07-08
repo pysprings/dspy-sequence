@@ -1,7 +1,7 @@
 # Session 1: LM Setup - Gateway to AI Services
 *DSPy Mastery Series - Month 1 - July 2025*
 
-## 1. Opening & Context Setting (10 mins)
+## 1. Opening & Context Setting
 
 Welcome to the DSPy Mastery Series! We're embarking on a 12-month journey to
 master systematic AI development using Python patterns you already know. Today
@@ -18,7 +18,7 @@ Anthropic, or local models.
 - Understand LM as your gateway to AI services
 - Grasp the architecture without getting lost in complexity
 
-## 2. Hello World with DSPy LM (15 mins)
+## 2. Hello World with DSPy LM
 
 Let's start with an example.
 
@@ -39,7 +39,7 @@ print(response)
 **Key Takeaway:** DSPy makes AI integration as simple as any other Python
 library - no complex setup, no vendor-specific APIs to learn.
 
-## 3. Unpacking the LM Class (20 mins)
+## 3. Unpacking the LM Class
 
 Now let's understand what's happening under the hood, using some "cartoonified code":
 
@@ -122,7 +122,7 @@ class BaseLM:
 `dspy.ChainOfThought`, etc.) uses the configured LM under the hood. It's the
 universal translator between your Python code and AI services.
 
-## 4. The OpenRouter Ecosystem (15 mins)
+## 4. The OpenRouter Ecosystem
 
 OpenRouter is like a universal broker for AI models - one API to access
 hundreds of AI models through a single endpoint. Think of it as the "Amazon for
@@ -266,7 +266,7 @@ platform runs at the edge, adding just ~25ms between users and their inference.
 - No vendor lock-in
 - Production-ready from day one
 
-## 5. Practical Examples (20 mins)
+## 5. Practical Examples
 
 ### CLI-Based Chatbot
 ```python
@@ -330,7 +330,7 @@ print(answer.answer)
 
 **Live Coding Opportunity:** Build one of these examples with the audience, taking suggestions for modifications.
 
-## 6. Performance & Production Considerations (10 mins)
+## 6. Performance & Production Considerations
 
 ### Caching: Your Secret Weapon
 ```python
@@ -369,7 +369,7 @@ for entry in lm.history:
 dspy.settings.disable_history = True
 ```
 
-## 7. Integration Landscape (10 mins)
+## 7. Integration Landscape
 
 ### LiteLLM: The Universal Translator
 DSPy uses LiteLLM under the hood, which means you get:
@@ -409,7 +409,7 @@ with dspy.context(lm=prod_lm):
     result = dspy.Predict("question -> answer")(question="Deploy!")
 ```
 
-## 8. Oddities & Gotchas (5 mins)
+## 8. Oddities & Gotchas
 
 ### Model-Specific Configurations
 ```python
@@ -434,7 +434,7 @@ reasoning_lm = dspy.LM(
 - Model routing and fallbacks
 - Usage analytics and cost tracking
 
-## 9. Testing & Serialization (5 mins)
+## 9. Testing & Serialization
 
 ### Built-in Testing Support
 ```python
@@ -454,7 +454,7 @@ deterministic_lm = dspy.LM('openrouter/openai/gpt-4o-mini', temperature=0.0)
 # Same input always produces same output (when temperature=0.0)
 ```
 
-## 10. Session Wrap & Next Steps (5 mins)
+## 10. Session Wrap & Next Steps
 
 ### Key Takeaways
 **LM as Your AI Gateway:** The `dspy.LM` class abstracts away provider

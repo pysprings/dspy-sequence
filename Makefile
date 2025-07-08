@@ -21,7 +21,7 @@ PANDOC_FLAGS := --filter pandoc-plot \
 # Phony targets do not represent files.
 .PHONY: all clean help
 
-# Default target: build all presentations.
+## Build all presentations (default).
 all: $(TARGETS)
 
 # Pattern rule to build a single presentation.
@@ -31,7 +31,7 @@ $(DIST_DIR)/session-%/presentation.html: $(SRC_DIR)/session-%/presentation.md
 	@echo "Building $< -> $@"
 	@$(PANDOC) $(PANDOC_FLAGS) -o $@ $<
 
-# Clean up all generated files.
+## Clean up all generated files.
 clean:
 	@echo "Cleaning up generated files in $(DIST_DIR) and plots/ directory..."
 	@rm -rf $(DIST_DIR)

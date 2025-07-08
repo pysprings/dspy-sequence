@@ -14,6 +14,7 @@ GitHub's API or a weather service, `dspy.LM` works whether you're using OpenAI,
 Anthropic, or local models.
 
 **Session Goals:**
+
 - Understand LM as your gateway to AI services
 - Grasp the architecture without getting lost in complexity
 
@@ -220,20 +221,24 @@ OpenRouter supports special suffixes that can be added to model names to change 
 ### Spectrum of Capabilities
 
 **Speed Demons (Fast & Cheap):**
+
 - `openrouter/openai/gpt-4o-mini` - OpenAI's efficient model
 - `openrouter/anthropic/claude-3-haiku-20240307` - Anthropic's fastest
 - `openrouter/google/gemini-1.5-flash` - Google's speed champion
 
 **Powerhouses (Complex Reasoning):**
+
 - `openrouter/openai/o3` - OpenAI's flagship
 - `openrouter/anthropic/claude-3-5-sonnet-20241022` - Top reasoning model
 - `openrouter/google/gemini-2.5-pro` - Google's advanced model
 
 **Local Options (Privacy & Cost Control):**
+
 - `ollama/llama3.2:1b` - Lightweight local model
 - `ollama/llama3.2:3b` - Balanced local option
 
 **Specialized Models:**
+
 - Models fine-tuned for coding, math, specific domains
 - Access to 400+ AI models through one API
 
@@ -254,6 +259,7 @@ annualized inference spending managed by the platform topping $100 million. The
 platform runs at the edge, adding just ~25ms between users and their inference.
 
 **For Python Developers, This Means:**
+
 - Write once, run anywhere (any AI provider)
 - Built-in reliability and fallbacks
 - Cost optimization without complexity
@@ -339,6 +345,7 @@ response2 = lm("What is 2+2?")  # No API call made
 ```
 
 **Two Levels of Caching:**
+
 - **LiteLLM-level caching:** Persistent across program runs
 - **In-memory caching:** Fast LRU cache for repeated calls within session
 
@@ -366,6 +373,7 @@ dspy.settings.disable_history = True
 
 ### LiteLLM: The Universal Translator
 DSPy uses LiteLLM under the hood, which means you get:
+
 - **100+ models** from 20+ providers
 - **Unified interface** regardless of provider
 - **Built-in retry logic** with exponential backoff
@@ -414,12 +422,14 @@ reasoning_lm = dspy.LM(
 ```
 
 ### Common Pitfalls:
+
 - **API key management:** Never hardcode keys, use environment variables
 - **Rate limiting:** Built-in retry handles this automatically
 - **Token limits:** DSPy warns when responses are truncated
 - **Model names:** Use the exact format: `"provider/model-name"`
 
 ### OpenRouter Features
+
 - Multiple API keys for higher rate limits
 - Model routing and fallbacks
 - Usage analytics and cost tracking
@@ -452,12 +462,14 @@ complexity while giving you access to the entire AI ecosystem. It's designed to
 be simple for basic use cases yet powerful enough for complex applications.
 
 **The Three-Layer Stack:**
+
 1. **LM Layer:** Handles provider communication (today's focus)
 2. **Module Layer:** Reusable AI components (next month)
 3. **Optimization Layer:** Automatic improvement (later in series)
 
 ### Preview of Month 2: Data Collection
 Next month we'll explore how DSPy handles the foundation of all AI systems: data. We'll cover:
+
 - Training data formats and collection
 - Validation and test set creation
 - Data preprocessing pipelines
@@ -468,6 +480,7 @@ Next month we'll explore how DSPy handles the foundation of all AI systems: data
 content as we pioneer this learning path together.*
 
 **Action Items:**
+
 1. Set up DSPy in your local environment
 2. Try the examples with your own prompts
 3. Experiment with different model providers

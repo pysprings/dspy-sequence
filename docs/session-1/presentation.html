@@ -20,6 +20,70 @@ margin: 0 0.8em 0.2em -1.6em;
 vertical-align: middle;
 }
 .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
   <style type="text/css">
 html {
@@ -310,6 +374,470 @@ display: none !important;
 </style>
 </head>
 <body>
-
+<h1 id="session-1-lm-setup---gateway-to-ai-services">Session 1: LM Setup
+- Gateway to AI Services</h1>
+<p><em>DSPy Mastery Series - Month 1 - July 2025</em></p>
+<h2 id="opening-context-setting-10-mins">1. Opening &amp; Context
+Setting (10 mins)</h2>
+<p>Welcome to the DSPy Mastery Series! We’re embarking on a 12-month
+journey to master systematic AI development using Python patterns you
+already know. Today we start with the foundation: the LM (Language
+Model) class.</p>
+<p><strong>Why LM matters:</strong> Think of <code>dspy.LM</code> like
+the <code>requests</code> library for AI models - it’s a unified
+interface that lets you talk to any AI provider using the same Python
+code. Just like <code>requests.get()</code> works whether you’re calling
+GitHub’s API or a weather service, <code>dspy.LM</code> works whether
+you’re using OpenAI, Anthropic, or local models.</p>
+<p><strong>Session Goals:</strong> - Understand LM as your gateway to AI
+services - Grasp the architecture without getting lost in complexity</p>
+<h2 id="hello-world-with-dspy-lm-15-mins">2. Hello World with DSPy LM
+(15 mins)</h2>
+<p>Let’s start with an example.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dspy</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a language model instance</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>, api_key<span class="op">=</span><span class="st">&#39;your-openrouter-key&#39;</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure DSPy to use this model globally</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>dspy.configure(lm<span class="op">=</span>lm)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct usage - simple prompt</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> lm(<span class="st">&quot;What is the capital of France?&quot;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code></pre></div>
+<p><strong>Key Takeaway:</strong> DSPy makes AI integration as simple as
+any other Python library - no complex setup, no vendor-specific APIs to
+learn.</p>
+<h2 id="unpacking-the-lm-class-20-mins">3. Unpacking the LM Class (20
+mins)</h2>
+<p>Now let’s understand what’s happening under the hood, using some
+“cartoonified code”:</p>
+<h3 id="the-lm-class-simplified">The LM Class (Simplified)</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LM:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model: <span class="bu">str</span>, model_type<span class="op">=</span><span class="st">&#39;chat&#39;</span>, temperature<span class="op">=</span><span class="fl">0.0</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                 max_tokens<span class="op">=</span><span class="dv">4000</span>, cache<span class="op">=</span><span class="va">True</span>, num_retries<span class="op">=</span><span class="dv">3</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Store the model identifier (like &quot;openai/gpt-4o-mini&quot;)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> model</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model_type <span class="op">=</span> model_type  <span class="co"># &#39;chat&#39; or &#39;text&#39;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cache <span class="op">=</span> cache</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_retries <span class="op">=</span> num_retries</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.history <span class="op">=</span> []  <span class="co"># Track all your API calls</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Combine all parameters for the API call</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kwargs <span class="op">=</span> <span class="bu">dict</span>(temperature<span class="op">=</span>temperature, max_tokens<span class="op">=</span>max_tokens, <span class="op">**</span>kwargs)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, prompt<span class="op">=</span><span class="va">None</span>, messages<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;This is what happens when you call lm(&#39;your prompt&#39;)&quot;&quot;&quot;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Convert prompt to messages format if needed</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        messages <span class="op">=</span> messages <span class="kw">or</span> [{<span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span>, <span class="st">&quot;content&quot;</span>: prompt}]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Merge any new parameters</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        merged_kwargs <span class="op">=</span> {<span class="op">**</span><span class="va">self</span>.kwargs, <span class="op">**</span>kwargs}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Make the actual API call (with retries and caching)</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="va">self</span>.forward(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            model<span class="op">=</span><span class="va">self</span>.model, </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            messages<span class="op">=</span>messages, </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="op">**</span>merged_kwargs</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Process response and update history</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> <span class="va">self</span>._extract_text_from_response(response)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.history.append({</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;prompt&quot;</span>: prompt,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;messages&quot;</span>: messages, </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;response&quot;</span>: response,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;outputs&quot;</span>: outputs</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> outputs</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, <span class="op">**</span>request_params):</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;The actual API call - this is where LiteLLM does the work&quot;&quot;&quot;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> litellm.completion(<span class="op">**</span>request_params)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> copy(<span class="va">self</span>, <span class="op">**</span>new_params):</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Create a new LM with different settings&quot;&quot;&quot;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copy this LM but change some parameters</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> LM(<span class="va">self</span>.model, <span class="op">**</span>{<span class="op">**</span><span class="va">self</span>.__dict__, <span class="op">**</span>new_params})</span></code></pre></div>
+<h3 id="the-foundation-baselm">The Foundation: BaseLM</h3>
+<p>The LM class actually inherits from <code>BaseLM</code>, which
+provides the common interface:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BaseLM:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Base class that defines what any language model wrapper must do&quot;&quot;&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model, model_type<span class="op">=</span><span class="st">&#39;chat&#39;</span>, temperature<span class="op">=</span><span class="fl">0.0</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                 max_tokens<span class="op">=</span><span class="dv">1000</span>, cache<span class="op">=</span><span class="va">True</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Common setup for any LM implementation</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, prompt<span class="op">=</span><span class="va">None</span>, messages<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This must be implemented by subclasses</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div>
+<h3 id="key-parameters-explained">Key Parameters Explained</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Default</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>model</code></td>
+<td>required</td>
+<td>Model identifier like <code>&quot;openai/gpt-4o-mini&quot;</code></td>
+</tr>
+<tr class="even">
+<td><code>temperature</code></td>
+<td>0.0</td>
+<td>Controls randomness (0.0 = deterministic)</td>
+</tr>
+<tr class="odd">
+<td><code>max_tokens</code></td>
+<td>4000</td>
+<td>Maximum response length</td>
+</tr>
+<tr class="even">
+<td><code>cache</code></td>
+<td>True</td>
+<td>Saves money by caching identical requests</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Where LM Lives in DSPy:</strong> Every DSPy module
+(<code>dspy.Predict</code>, <code>dspy.ChainOfThought</code>, etc.) uses
+the configured LM under the hood. It’s the universal translator between
+your Python code and AI services.</p>
+<h2 id="the-openrouter-ecosystem-15-mins">4. The OpenRouter Ecosystem
+(15 mins)</h2>
+<p>OpenRouter is like a universal broker for AI models - one API to
+access hundreds of AI models through a single endpoint. Think of it as
+the “Amazon for AI models” - instead of managing subscriptions and APIs
+for each vendor service (provider), you get everything in one place.</p>
+<h3 id="why-openrouter-matters-for-python-developers">Why OpenRouter
+Matters for Python Developers</h3>
+<p><strong>The Problem Without OpenRouter:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Without OpenRouter - managing multiple APIs</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anthropic</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.cloud <span class="im">import</span> aiplatform</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Different setup for each provider</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>openai_client <span class="op">=</span> openai.OpenAI(api_key<span class="op">=</span><span class="st">&quot;sk-...&quot;</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>anthropic_client <span class="op">=</span> anthropic.Anthropic(api_key<span class="op">=</span><span class="st">&quot;sk-ant-...&quot;</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ... different authentication, different parameters, different error handling</span></span></code></pre></div>
+<p><strong>The Solution With OpenRouter:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With OpenRouter - one API for everything</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dspy</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># All models through OpenRouter&#39;s unified interface</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>openai_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>anthropic_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/anthropic/claude-3-haiku-20240307&#39;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>google_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/google/gemini-1.5-flash&#39;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>meta_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/meta-llama/llama-3.2-3b-instruct&#39;</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Local models still use direct provider format</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>local_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;ollama/llama3.2:1b&#39;</span>)</span></code></pre></div>
+<p><strong>Note:</strong> DSPy supports both approaches - you can use
+models directly from providers (e.g., <code>openai/gpt-4o-mini</code>)
+or route them through OpenRouter (e.g.,
+<code>openrouter/openai/gpt-4o-mini</code>) for additional benefits like
+automatic failover and cost optimization.</p>
+<h3 id="core-value-propositions">Core Value Propositions</h3>
+<p><strong>1. Effortless Model Switching</strong> OpenRouter removes the
+need for code modifications when switching AI providers because
+developers can keep using its API after switching to a new AI model:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start with a fast, cheap model for development</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dspy.configure(lm<span class="op">=</span>dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch to a more powerful model for production</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Just change the string - no code changes needed!</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dspy.configure(lm<span class="op">=</span>dspy.LM(<span class="st">&#39;openrouter/anthropic/claude-3-5-sonnet-20241022&#39;</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Or even switch to a local model for privacy</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>dspy.configure(lm<span class="op">=</span>dspy.LM(<span class="st">&#39;ollama/llama3.2:3b&#39;</span>))</span></code></pre></div>
+<p><strong>2. Automatic Failover &amp; Reliability</strong> OpenRouter
+provides reliable AI models via distributed infrastructure with
+automatic fallbacks to other providers when one goes down. Your code
+keeps working even if OpenAI has an outage:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If OpenAI goes down, automatically switches to another provider</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/mistralai/mistral-small-24b-isnstruct-2501&#39;</span>)  <span class="co"># Transparent failover built-in</span></span></code></pre></div>
+<p><strong>3. Cost Optimization Features</strong> Developers can
+configure the platform to prioritize the most cost-efficient LLMs, with
+caching features that reuse common prompt responses:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use cost-optimized routing</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/meta-llama/llama-3.2-3b-instruct:floor&#39;</span>)  <span class="co"># :floor = cheapest</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Free models for experimentation</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>free_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/meta-llama/llama-3.2-3b-instruct:free&#39;</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Speed-optimized routing</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>fast_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini:nitro&#39;</span>)  <span class="co"># :nitro = fastest</span></span></code></pre></div>
+<h3 id="model-variant-magic">Model Variant Magic</h3>
+<p>OpenRouter supports special suffixes that can be added to model names
+to change their behavior:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variant</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>:free</code></td>
+<td>Free tier with rate limits</td>
+<td><code>llama-3:free</code></td>
+</tr>
+<tr class="even">
+<td><code>:floor</code></td>
+<td>Cheapest available provider</td>
+<td><code>gpt-4o:floor</code></td>
+</tr>
+<tr class="odd">
+<td><code>:nitro</code></td>
+<td>Fastest response times</td>
+<td><code>claude-3-haiku:nitro</code></td>
+</tr>
+<tr class="even">
+<td><code>:online</code></td>
+<td>Web search capabilities</td>
+<td><code>gpt-4o:online</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="spectrum-of-capabilities">Spectrum of Capabilities</h3>
+<p><strong>Speed Demons (Fast &amp; Cheap):</strong> -
+<code>openrouter/openai/gpt-4o-mini</code> - OpenAI’s efficient model -
+<code>openrouter/anthropic/claude-3-haiku-20240307</code> - Anthropic’s
+fastest - <code>openrouter/google/gemini-1.5-flash</code> - Google’s
+speed champion</p>
+<p><strong>Powerhouses (Complex Reasoning):</strong> -
+<code>openrouter/openai/o3</code> - OpenAI’s flagship -
+<code>openrouter/anthropic/claude-3-5-sonnet-20241022</code> - Top
+reasoning model - <code>openrouter/google/gemini-2.5-pro</code> -
+Google’s advanced model</p>
+<p><strong>Local Options (Privacy &amp; Cost Control):</strong> -
+<code>ollama/llama3.2:1b</code> - Lightweight local model -
+<code>ollama/llama3.2:3b</code> - Balanced local option</p>
+<p><strong>Specialized Models:</strong> - Models fine-tuned for coding,
+math, specific domains - Access to 400+ AI models through one API</p>
+<h3 id="enterprise-grade-features">Enterprise-Grade Features</h3>
+<p>OpenRouter’s enterprise edition provides expanded technical support,
+high rate limits and optimizations designed to reduce AI applications’
+latency:</p>
+<ul>
+<li><strong>Unified Billing:</strong> Aggregate billing in one place and
+track usage using analytics</li>
+<li><strong>BYOK Support:</strong> Use your own provider API keys with
+just a 5% fee</li>
+<li><strong>Analytics Dashboard:</strong> Track costs and usage across
+all models</li>
+<li><strong>Rate Limit Management:</strong> Different rate limits for
+different models to share the load</li>
+</ul>
+<h3 id="the-numbers-behind-openrouter">The Numbers Behind
+OpenRouter</h3>
+<p>OpenRouter processes 8.4 trillion tokens per month for customers,
+with annualized inference spending managed by the platform topping $100
+million. The platform runs at the edge, adding just ~25ms between users
+and their inference.</p>
+<p><strong>For Python Developers, This Means:</strong> - Write once, run
+anywhere (any AI provider) - Built-in reliability and fallbacks - Cost
+optimization without complexity - No vendor lock-in - Production-ready
+from day one</p>
+<h2 id="practical-examples-20-mins">5. Practical Examples (20 mins)</h2>
+<h3 id="cli-based-chatbot">CLI-Based Chatbot</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dspy</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_chatbot():</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    dspy.configure(lm<span class="op">=</span>lm)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;DSPy Chatbot (type &#39;quit&#39; to exit)&quot;</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        user_input <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;You: &quot;</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> user_input.lower() <span class="op">==</span> <span class="st">&#39;quit&#39;</span>:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> lm(<span class="ss">f&quot;You are a helpful assistant. User says: </span><span class="sc">{</span>user_input<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Bot: </span><span class="sc">{</span>response[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    build_chatbot()</span></code></pre></div>
+<h3 id="command-completion-example-ctrl-l-style">Command Completion
+Example (Ctrl-L Style)</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smart_completion(partial_command):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    completion_prompt <span class="op">=</span> <span class="ss">f&quot;&quot;&quot;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    Complete this shell command: </span><span class="sc">{</span>partial_command<span class="sc">}</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    Only return the completed command, nothing else.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ss">    &quot;&quot;&quot;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> lm(completion_prompt)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result[<span class="dv">0</span>].strip()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(smart_completion(<span class="st">&quot;git commit -m &quot;</span>))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: git commit -m &quot;Add new feature&quot;</span></span></code></pre></div>
+<h3 id="using-with-dspy-modules">Using with DSPy Modules</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a simple classifier using the LM</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>classifier <span class="op">=</span> dspy.Predict(<span class="st">&quot;text -&gt; sentiment&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> classifier(text<span class="op">=</span><span class="st">&quot;I love this product!&quot;</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.sentiment)  <span class="co"># &quot;positive&quot;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a custom module</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleQA(dspy.Module):</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.qa <span class="op">=</span> dspy.Predict(<span class="st">&quot;question -&gt; answer&quot;</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, question):</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.qa(question<span class="op">=</span>question)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>qa_system <span class="op">=</span> SimpleQA()</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>answer <span class="op">=</span> qa_system(<span class="st">&quot;What is machine learning?&quot;</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(answer.answer)</span></code></pre></div>
+<p><strong>Live Coding Opportunity:</strong> Build one of these examples
+with the audience, taking suggestions for modifications.</p>
+<h2 id="performance-production-considerations-10-mins">6. Performance
+&amp; Production Considerations (10 mins)</h2>
+<h3 id="caching-your-secret-weapon">Caching: Your Secret Weapon</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Caching enabled by default - saves money!</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>, cache<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># First call - hits the API</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>response1 <span class="op">=</span> lm(<span class="st">&quot;What is 2+2?&quot;</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Second identical call - returns cached result (free!)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>response2 <span class="op">=</span> lm(<span class="st">&quot;What is 2+2?&quot;</span>)  <span class="co"># No API call made</span></span></code></pre></div>
+<p><strong>Two Levels of Caching:</strong> - <strong>LiteLLM-level
+caching:</strong> Persistent across program runs - <strong>In-memory
+caching:</strong> Fast LRU cache for repeated calls within session</p>
+<h3 id="history-tracking">History Tracking</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lm(<span class="st">&quot;Hello, world!&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect recent interactions</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>lm.inspect_history(n<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Access programmatically</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Total interactions: </span><span class="sc">{</span><span class="bu">len</span>(lm.history)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> entry <span class="kw">in</span> lm.history:</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Cost: $</span><span class="sc">{</span>entry<span class="sc">.</span>get(<span class="st">&#39;cost&#39;</span>, <span class="st">&#39;cached&#39;</span>)<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<p><strong>Production Warning:</strong> Global history can cause memory
+leaks. In production, consider:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Disable global history tracking</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dspy.settings.disable_history <span class="op">=</span> <span class="va">True</span></span></code></pre></div>
+<h2 id="integration-landscape-10-mins">7. Integration Landscape (10
+mins)</h2>
+<h3 id="litellm-the-universal-translator">LiteLLM: The Universal
+Translator</h3>
+<p>DSPy uses LiteLLM under the hood, which means you get: - <strong>100+
+models</strong> from 20+ providers - <strong>Unified interface</strong>
+regardless of provider - <strong>Built-in retry logic</strong> with
+exponential backoff - <strong>Automatic rate limiting</strong> and error
+handling</p>
+<h3 id="http-interfaces-and-streaming">HTTP Interfaces and
+Streaming</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic completion</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> lm(<span class="st">&quot;Tell me a story&quot;</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chat format</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>chat_response <span class="op">=</span> lm(messages<span class="op">=</span>[</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;role&quot;</span>: <span class="st">&quot;system&quot;</span>, <span class="st">&quot;content&quot;</span>: <span class="st">&quot;You are a helpful assistant&quot;</span>},</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span>, <span class="st">&quot;content&quot;</span>: <span class="st">&quot;Hello!&quot;</span>}</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Streaming (coming in advanced sessions)</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># for chunk in lm.stream(&quot;Long story...&quot;):</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     print(chunk, end=&quot;&quot;)</span></span></code></pre></div>
+<h3 id="avoiding-vendor-lock-in">Avoiding Vendor Lock-in</h3>
+<p>The beauty of DSPy’s LM abstraction:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Development with cheap model</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dev_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Production with different provider</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>prod_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/anthropic/claude-3-5-sonnet-20241022&#39;</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Same code works with both!</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> dspy.context(lm<span class="op">=</span>prod_lm):</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> dspy.Predict(<span class="st">&quot;question -&gt; answer&quot;</span>)(question<span class="op">=</span><span class="st">&quot;Deploy!&quot;</span>)</span></code></pre></div>
+<h2 id="oddities-gotchas-5-mins">8. Oddities &amp; Gotchas (5 mins)</h2>
+<h3 id="model-specific-configurations">Model-Specific
+Configurations</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI&#39;s reasoning models (o1, o3) have special requirements</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>reasoning_lm <span class="op">=</span> dspy.LM(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;openrouter/openai/o1-mini&#39;</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">1.0</span>,  <span class="co"># Must be 1.0</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">20000</span>  <span class="co"># Must be &gt;= 20,000</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="common-pitfalls">Common Pitfalls:</h3>
+<ul>
+<li><strong>API key management:</strong> Never hardcode keys, use
+environment variables</li>
+<li><strong>Rate limiting:</strong> Built-in retry handles this
+automatically</li>
+<li><strong>Token limits:</strong> DSPy warns when responses are
+truncated</li>
+<li><strong>Model names:</strong> Use the exact format:
+<code>&quot;provider/model-name&quot;</code></li>
+</ul>
+<h3 id="openrouter-features">OpenRouter Features</h3>
+<ul>
+<li>Multiple API keys for higher rate limits</li>
+<li>Model routing and fallbacks</li>
+<li>Usage analytics and cost tracking</li>
+</ul>
+<h2 id="testing-serialization-5-mins">9. Testing &amp; Serialization (5
+mins)</h2>
+<h3 id="built-in-testing-support">Built-in Testing Support</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy models with different parameters</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>test_lm <span class="op">=</span> lm.copy(temperature<span class="op">=</span><span class="fl">0.8</span>, max_tokens<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect model state</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> lm.dump_state()</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(state)  <span class="co"># All configuration parameters</span></span></code></pre></div>
+<h3 id="reproducibility">Reproducibility</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deterministic responses for testing</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>deterministic_lm <span class="op">=</span> dspy.LM(<span class="st">&#39;openrouter/openai/gpt-4o-mini&#39;</span>, temperature<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Same input always produces same output (when temperature=0.0)</span></span></code></pre></div>
+<h2 id="session-wrap-next-steps-5-mins">10. Session Wrap &amp; Next
+Steps (5 mins)</h2>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<p><strong>LM as Your AI Gateway:</strong> The <code>dspy.LM</code>
+class abstracts away provider complexity while giving you access to the
+entire AI ecosystem. It’s designed to be simple for basic use cases yet
+powerful enough for complex applications.</p>
+<p><strong>The Three-Layer Stack:</strong> 1. <strong>LM Layer:</strong>
+Handles provider communication (today’s focus) 2. <strong>Module
+Layer:</strong> Reusable AI components (next month) 3.
+<strong>Optimization Layer:</strong> Automatic improvement (later in
+series)</p>
+<h3 id="preview-of-month-2-data-collection">Preview of Month 2: Data
+Collection</h3>
+<p>Next month we’ll explore how DSPy handles the foundation of all AI
+systems: data. We’ll cover: - Training data formats and collection -
+Validation and test set creation - Data preprocessing pipelines -
+Quality metrics and filtering</p>
+<h3 id="questions-and-collaborative-feedback">Questions and
+Collaborative Feedback</h3>
+<p><em>This curriculum is being developed collaboratively - your
+feedback shapes the content as we pioneer this learning path
+together.</em></p>
+<p><strong>Action Items:</strong> 1. Set up DSPy in your local
+environment 2. Try the examples with your own prompts 3. Experiment with
+different model providers 4. Share your use cases for next session</p>
+<hr />
+<p><strong>Remember:</strong> Every expert was once a beginner. Today
+you’ve taken the first step toward systematic AI development with
+Python. The LM class is your gateway - everything else builds from
+here.</p>
+<p><em>Time to start wrangling some serious AI magic, Pythoneers!
+🐍⚡</em></p>
 </body>
 </html>

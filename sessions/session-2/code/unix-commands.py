@@ -1,5 +1,5 @@
 import dspy
-from dspy.teleprompt import BootstrapFewShot
+from dspy.teleprompt import MIPROv2
 
 
 # Step 1: Define the task signature
@@ -105,15 +105,20 @@ dspy.settings.configure(lm=lm)
 # Step 6: Initialize the base module
 unix_generator = UnixCommandGenerator()
 
-# Step 7: Optimize the module using examples and metric
-optimizer = BootstrapFewShot(
+# Step 7: Optimize the module using MIPROv2 in zero-shot mode
+optimizer = MIPROv2(
     metric=command_match_metric,
-    max_bootstrapped_demos=4,  # How many examples to include in prompts
+    auto="light",  # Can choose between light, medium, and heavy optimization runs
 )
 
 # Compile the optimized module
-print("Optimizing the Unix command generator...")
-optimized_generator = optimizer.compile(unix_generator, trainset=training_examples)
+print("Optimizing the Unix command generator with MIPROv2 (zero-shot)...")
+optimized_generator = optimizer.compile(
+    unix_generator,
+    trainset=training_examples,
+    max_bootstrapped_demos=0,  # No generated examples
+    max_labeled_demos=0,  # No examples from training set
+)
 
 # Step 8: Use the optimized module
 test_requests = [
@@ -134,20 +139,8 @@ for request in test_requests:
     print(f"Command: {result.command}")
     print("-" * 40)
 
-# Optional: Inspect what the optimization learned
-print("\n" + "=" * 50)
-print("Optimization details:")
-print("=" * 50)
-# After compilation, the demonstrations are stored in the `demos` attribute of the underlying `Predict` module.
-# For ChainOfThought, this is `optimized_generator.generate.predict.demos`.
-print(
-    f"Number of demos bootstrapped: {len(optimized_generator.generate.predict.demos)}"
-)
-print("\nExample demonstrations learned:")
-for i, demo in enumerate(optimized_generator.generate.predict.demos[:2], 1):
-    print(f"\nDemo {i}:")
-    print(f"  Request: {demo.request}")
-    print(f"  Command: {demo.command}")
+# With zero-shot optimization, there are no demos to inspect.
+# The `dspy.inspect_history()` call below will show the optimized prompt.
 
 # Display the final prompt sent to the LM for the last test request
 print("\n" + "=" * 50)

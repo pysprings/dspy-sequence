@@ -128,7 +128,7 @@ def command_match_metric(example, prediction, trace=None):
 
 # Step 5: Configure DSPy with a language model
 # Replace with your preferred model
-lm = dspy.OpenAI(model="gpt-3.5-turbo", max_tokens=100)
+lm = dspy.LM("openai/gpt-3.5-turbo", max_tokens=100)
 dspy.settings.configure(lm=lm)
 
 # Step 6: Initialize the base module

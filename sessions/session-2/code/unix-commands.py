@@ -170,9 +170,11 @@ for request in test_requests:
 print("\n" + "="*50)
 print("Optimization details:")
 print("="*50)
-print(f"Number of demos bootstrapped: {len(optimized_generator.generate.demos)}")
+# After compilation, the demonstrations are stored in the `demos` attribute of the underlying `Predict` module.
+# For ChainOfThought, this is `optimized_generator.generate.predict.demos`.
+print(f"Number of demos bootstrapped: {len(optimized_generator.generate.predict.demos)}")
 print("\nExample demonstrations learned:")
-for i, demo in enumerate(optimized_generator.generate.demos[:2], 1):
+for i, demo in enumerate(optimized_generator.generate.predict.demos[:2], 1):
     print(f"\nDemo {i}:")
     print(f"  Request: {demo.request}")
     print(f"  Command: {demo.command}")

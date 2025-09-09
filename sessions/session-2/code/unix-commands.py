@@ -178,3 +178,9 @@ for i, demo in enumerate(optimized_generator.generate.predict.demos[:2], 1):
     print(f"\nDemo {i}:")
     print(f"  Request: {demo.request}")
     print(f"  Command: {demo.command}")
+
+# Display the final prompt sent to the LM for the last test request
+print("\n" + "="*50)
+print("Final optimized prompt:")
+print("="*50)
+dspy.inspect_history(n=1)

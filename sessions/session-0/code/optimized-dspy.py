@@ -1,6 +1,6 @@
 from utils import load_gsm8k, evaluate
 import dspy
-from dspy.teleprompt import BootstrapFewShotWithRandomSearch
+from dspy.teleprompt import MIPROv2
 
 
 class MathSolver(dspy.Module):
@@ -17,18 +17,21 @@ def main():
     trainset = load_gsm8k(split="test", n=10, offset=10)
     dspy.configure(lm=dspy.LM("openai/gpt-4.1-nano", max_tokens=1000))
 
-    # Optimize with BootstrapFewShotWithRandomSearch
-    teleprompter = BootstrapFewShotWithRandomSearch(
+    # Optimize with MIPROv2 in zero-shot mode
+    teleprompter = MIPROv2(
         metric=lambda example, pred, trace=None: str(pred.answer)
         == str(example.answer),
-        max_bootstrapped_demos=4,
-        max_labeled_demos=4,
-        num_candidate_programs=10,
+        auto="light",
         num_threads=10,
     )
 
     solver = MathSolver()
-    optimized_solver = teleprompter.compile(solver, trainset=trainset)
+    optimized_solver = teleprompter.compile(
+        solver,
+        trainset=trainset,
+        max_bootstrapped_demos=0,
+        max_labeled_demos=0,
+    )
 
     accuracy = evaluate(optimized_solver, testset)
     print(f"Optimized DSPy Accuracy: {accuracy:.2f}")

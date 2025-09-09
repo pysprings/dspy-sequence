@@ -30,6 +30,45 @@ graph TD
     style H fill:#4ecdc4
 ```
 
+```plantuml
+@startuml
+title DSPy Core Components - Beginner's Mental Model
+
+skinparam component {
+  BackgroundColor<<essential>> #FC8D62
+  BackgroundColor<<core>> #66C2A5
+  BackgroundColor<<foundation>> #A6D854
+  BackgroundColor<<advanced>> #8DA0CB
+  BackgroundColor<<hidden>> #E5C494
+  BackgroundColor<<external>> #B3B3B3
+}
+
+component Signatures <<essential>>
+component Modules <<core>>
+component Examples <<foundation>>
+component Metrics <<advanced>>
+component Optimizers <<advanced>>
+component Adapters <<hidden>>
+component LanguageModels as "Language Models" <<external>>
+
+Modules --> Signatures : uses
+Adapters --> Signatures : translates
+Modules --> Modules : composes
+Optimizers --> Modules : improves
+Optimizers --> Examples : requires
+Optimizers --> Metrics : uses
+Metrics --> Modules : evaluates
+Examples --> Optimizers : trains
+Modules --> Adapters : depends on
+Adapters --> LanguageModels : interfaces with
+
+note left of Signatures : Start Here!\nDeclare what you want
+note left of Modules : Build with these
+note right of Adapters : "Magic" happens here\n(ignore initially)
+
+@enduml
+```
+
 **Session Goals:**
 
 - Understand the role of `dspy.Example`

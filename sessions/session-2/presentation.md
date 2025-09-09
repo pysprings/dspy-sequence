@@ -127,7 +127,7 @@ noisy ones.
 Let's build a dataset for a sentiment classification task. Our signature will be
 `"text -> sentiment"`.
 
-### Step 1: Create a Training Set (`trainset`)
+### Create a Training Set
 The `trainset` is used by the DSPy optimizer to learn how to perform the task.
 It needs 10-50 high-quality examples.
 
@@ -151,7 +151,7 @@ It should be larger than the `trainset` (100-500 examples) and completely
 separate.
 
 ```python
-# A devset should be loaded from a file, not written by hand
+# A devset can be loaded from a file
 # devset = load_from_csv("sentiment_dev.csv")
 
 # For today's example, we'll create a small one
@@ -162,10 +162,6 @@ devset = [
     # ... pretend there are 200 more examples here
 ]
 ```
-
-**Key Takeaway:** Never use your training examples in your development set. The
-`devset` is your exam; the `trainset` is your study guide.
-
 ## 5. From Raw Data to Training Sets
 
 You rarely create examples from scratch. Usually, you'll transform existing
@@ -225,13 +221,6 @@ Your example structure **is** your system's specification.
 Next month, we'll dive deep into **Signatures**, the DSPy way of declaring
 *what* you want your AI to do. We'll see how Signatures and Examples work
 together to create powerful, predictable programs.
-
-**Action Items:**
-
-1.  Think of a simple task you do at work (e.g., classifying emails, summarizing notes, answering common questions).
-2.  Write down 5-10 `dspy.Example` objects for that task.
-3.  Pay attention to the fields you need. What are your inputs? What should the output(s) be?
-4.  Bring your examples to the next session!
 
 ---
 

@@ -127,7 +127,6 @@ noisy ones.
 Let's build a dataset for a sentiment classification task. Our signature will be
 `"text -> sentiment"`.
 
-### Create a Training Set
 The `trainset` is used by the DSPy optimizer to learn how to perform the task.
 It needs 10-50 high-quality examples.
 
@@ -142,26 +141,9 @@ trainset = [
     # ... add 5-10 more diverse examples
 ]
 ```
-This `trainset` teaches the optimizer the desired output format ("Positive",
-"Negative", "Neutral") and provides examples for the reasoning process.
+This `trainset` teaches the optimizer the desired output format ("Positive", "Negative", "Neutral") and provides
+examples for the reasoning process.
 
-### Step 2: Create a Development Set (`devset`)
-The `devset` is used to evaluate different optimized prompts during compilation.
-It should be larger than the `trainset` (100-500 examples) and completely
-separate.
-
-```python
-# A devset can be loaded from a file
-# devset = load_from_csv("sentiment_dev.csv")
-
-# For today's example, we'll create a small one
-devset = [
-    dspy.Example(text="The package was delayed by a few days.", sentiment="Neutral").with_inputs("text"),
-    dspy.Example(text="I am absolutely thrilled with this purchase!", sentiment="Positive").with_inputs("text"),
-    dspy.Example(text="The product failed after just one use. Awful.", sentiment="Negative").with_inputs("text"),
-    # ... pretend there are 200 more examples here
-]
-```
 ## 5. From Raw Data to Training Sets
 
 You rarely create examples from scratch. Usually, you'll transform existing

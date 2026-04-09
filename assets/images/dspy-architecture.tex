@@ -1,0 +1,80 @@
+\documentclass[tikz,border=12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc}
+
+\definecolor{found}{RGB}{70, 130, 180}
+\definecolor{core}{RGB}{60, 179, 113}
+\definecolor{adv}{RGB}{218, 165, 32}
+\definecolor{prod}{RGB}{178, 102, 178}
+
+\begin{document}
+\begin{tikzpicture}[
+    band/.style={
+        rectangle, rounded corners=6pt,
+        minimum width=12cm, minimum height=2.2cm,
+        draw=#1!60!black, fill=#1!15, line width=1.2pt,
+        font=\sffamily, align=center,
+    },
+    phase/.style={
+        font=\sffamily\footnotesize\bfseries, text=#1!50!black,
+    },
+    annot/.style={
+        font=\sffamily\small\itshape, text=gray!60,
+    },
+    bigarrow/.style={
+        -{Stealth[length=6pt]}, line width=2pt, draw=gray!40,
+    },
+]
+
+% --- Bands ---
+\node[band=found] (f) {%
+    \textbf{\large LM} \qquad
+    \textbf{\large Examples} \qquad
+    \textbf{\large Signatures}\\[2pt]
+    {\footnotesize\itshape connect to models} \qquad
+    {\footnotesize\itshape input/output pairs} \qquad
+    {\footnotesize\itshape declare intent}
+};
+
+\node[band=core, below=0.8cm of f] (c) {%
+    \textbf{\large Adapters} \qquad
+    \textbf{\large Modules} \qquad
+    \textbf{\large Metrics}\\[2pt]
+    {\footnotesize\itshape signature $\to$ prompt} \qquad
+    {\footnotesize\itshape Predict, ChainOfThought} \qquad
+    {\footnotesize\itshape measure quality}
+};
+
+\node[band=adv, below=0.8cm of c] (a) {%
+    \textbf{\large Optimizers} \qquad
+    \textbf{\large Advanced Modules} \qquad
+    \textbf{\large Assertions}\\[2pt]
+    {\footnotesize\itshape MIPROv2, Bootstrap} \qquad
+    {\footnotesize\itshape ReAct, multi-hop} \qquad
+    {\footnotesize\itshape runtime constraints}
+};
+
+\node[band=prod, below=0.8cm of a] (p) {%
+    \textbf{\large Trackers}\\[2pt]
+    {\footnotesize\itshape observe \& debug}
+};
+
+% --- Phase labels (left side) ---
+\node[phase=found, left=0.3cm of f, rotate=90, anchor=south] {Foundation};
+\node[phase=core,  left=0.3cm of c, rotate=90, anchor=south] {Core};
+\node[phase=adv,   left=0.3cm of a, rotate=90, anchor=south] {Advanced};
+\node[phase=prod,  left=0.3cm of p, rotate=90, anchor=south] {Production};
+
+% --- Layer annotations (right side) ---
+\node[annot, right=0.3cm of f] {What do you have?};
+\node[annot, right=0.3cm of c] {How does it run?};
+\node[annot, right=0.3cm of a] {How does it improve?};
+\node[annot, right=0.3cm of p] {How do you monitor it?};
+
+% --- Single flow arrows between bands ---
+\draw[bigarrow] (f.south) -- (c.north);
+\draw[bigarrow] (c.south) -- (a.north);
+\draw[bigarrow] (a.south) -- (p.north);
+
+\end{tikzpicture}
+\end{document}

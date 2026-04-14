@@ -30,11 +30,24 @@ PANDOC_FLAGS := --filter pandoc-plot \
                 --standalone \
                 -c assets/css/main-style.css
 
+# Server defaults (overridable on the command line: `make serve PORT=9000`).
+HOST ?= 0.0.0.0
+PORT ?= 8000
+
 # Phony targets do not represent files.
-.PHONY: all clean help
+.PHONY: all clean help serve
 
 ## Build all presentations and diagrams (default).
-all: $(TIKZ_PNGS) $(TARGETS) $(CASE_STUDY_TARGETS)
+all: $(TIKZ_PNGS) $(TARGETS) $(CASE_STUDY_TARGETS) $(DIST_DIR)/index.html
+
+# Landing page linking to each built presentation.
+$(DIST_DIR)/index.html: scripts/gen_index.py $(TARGETS) $(CASE_STUDY_TARGETS)
+	@mkdir -p $(@D)
+	@python scripts/gen_index.py --root $(DIST_DIR)
+
+## Serve built slides over the LAN with live rebuild and browser auto-reload.
+serve: all
+	@python scripts/serve.py --host $(HOST) --port $(PORT) --root $(DIST_DIR)
 
 # Pattern rule to build a single presentation.
 # Creates the destination directory if it doesn't exist.

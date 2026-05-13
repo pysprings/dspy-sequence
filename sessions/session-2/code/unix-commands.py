@@ -99,7 +99,7 @@ def command_match_metric(example, prediction, trace=None):
 
 # Step 5: Configure DSPy with a language model
 # Replace with your preferred model
-lm = dspy.LM("openai/gpt-3.5-turbo", max_tokens=200)
+lm = dspy.LM("openai/gpt-4.1-nano", max_tokens=200)
 dspy.settings.configure(lm=lm)
 
 # Step 6: Initialize the base module
@@ -109,6 +109,7 @@ unix_generator = UnixCommandGenerator()
 optimizer = MIPROv2(
     metric=command_match_metric,
     auto="light",  # Can choose between light, medium, and heavy optimization runs
+    prompt_model=dspy.LM("openai/gpt-4.1"),
 )
 
 # Compile the optimized module
@@ -116,7 +117,7 @@ print("Optimizing the Unix command generator with MIPROv2 (zero-shot)...")
 optimized_generator = optimizer.compile(
     unix_generator,
     trainset=training_examples,
-    max_bootstrapped_demos=0,  # No generated examples
+    max_bootstrapped_demos=3,  # No generated examples
     max_labeled_demos=0,  # No examples from training set
 )
 

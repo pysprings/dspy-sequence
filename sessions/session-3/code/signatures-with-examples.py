@@ -20,9 +20,9 @@ trainset = [
     dspy.Example(
         request="list all files in the current directory", command="ls -la"
     ).with_inputs("request"),
-    dspy.Example(
-        request="show running processes", command="ps aux"
-    ).with_inputs("request"),
+    dspy.Example(request="show running processes", command="ps aux").with_inputs(
+        "request"
+    ),
     dspy.Example(
         request="find every Python file", command="find . -name '*.py'"
     ).with_inputs("request"),

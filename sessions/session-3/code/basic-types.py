@@ -31,4 +31,4 @@ for review in reviews:
     print(f"  recommend: {result.recommend} (type={type(result.recommend).__name__})\n")
 
 # Uncomment to see the full compiled prompt + raw LM response for the last call:
-# dspy.inspect_history(n=1)
+dspy.inspect_history(n=1)

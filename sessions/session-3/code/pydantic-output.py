@@ -39,4 +39,4 @@ for entity in result.entities:
     print(f"  {entity.name:20s} type={entity.type:15s} conf={entity.confidence:.2f}")
 
 # Uncomment to see the JSON schema for Entity embedded in the compiled prompt:
-# dspy.inspect_history(n=1)
+dspy.inspect_history(n=1)

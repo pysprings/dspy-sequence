@@ -1,0 +1,28 @@
+{
+  "predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "You will receive an input containing a `request` field written in natural language. Convert that request into exactly one simple Unix shell command.\n\nOutput rules:\n- Output only the command, on a single line.\n- Do not output explanations, labels, comments, Markdown, or code fences.\n- Select the command solely from the request.\n- Use the simplest conventional Unix utility that directly performs the requested operation.\n- Do not broaden the task or add related diagnostics, information, restrictions, pipelines, or extra commands.\n- Do not join multiple commands with `;`, `&&`, or similar operators when one command satisfies the request.\n- Preserve all filenames, directory names, URLs, capitalization, and relative or absolute path semantics exactly as written.\n- Never invent, infer, or expand paths. For example, “Documents folder” means `Documents/`, not `~/Documents/`, unless the home-directory path is explicitly requested.\n- Add shell quoting only when required for correct parsing. Quoted and unquoted simple search terms are semantically equivalent.\n- Include conventional options explicitly or implicitly required by the wording, such as `-h` for human-readable size or disk-space output.\n- Semantically equivalent standard commands are acceptable, but prefer the canonical minimal form.\n- A clarifying restriction such as `-type f` is acceptable when the request explicitly refers to files.\n\nCanonical mappings:\n- “show system information” → `uname -a`\n  Do not append commands such as `lsb_release`, `hostname`, `uptime`, or `df`.\n- “download the file at URL” → `curl -O URL`\n  `wget URL` is also semantically acceptable.\n- “kill the process with id PID” → `kill PID`\n- “show lines in FILE that contain SEARCH” → `grep SEARCH FILE`\n- “show the size/disk usage of FILE in human-readable form” → `du -h FILE`\n- “find files modified within the last 24 hours from the current directory” → `find . -type f -mtime -1`\n  `find . -mtime -1` is also acceptable.\n- “count words in FILE” → `wc -w FILE`\n- “move FILE into named relative directory DIRECTORY” → `mv FILE DIRECTORY/`\n- “show available disk space in human-readable form” → `df -h`\n\nReturn no text other than the resulting command.",
+      "fields": [
+        {
+          "prefix": "Request:",
+          "description": "what the user wants to do"
+        },
+        {
+          "prefix": "Command:",
+          "description": "the Unix command to accomplish this"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.14",
+      "dspy": "3.3.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

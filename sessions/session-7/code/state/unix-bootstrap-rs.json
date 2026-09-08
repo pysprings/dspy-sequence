@@ -1,0 +1,45 @@
+{
+  "predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "request": "copy file.txt to backup.txt",
+        "command": "cp file.txt backup.txt"
+      },
+      {
+        "request": "see who is logged into the system",
+        "command": "who"
+      },
+      {
+        "request": "rename report.txt to report-final.txt",
+        "command": "mv report.txt report-final.txt"
+      },
+      {
+        "request": "show the size of data.csv in human readable form",
+        "command": "du -h data.csv"
+      }
+    ],
+    "signature": {
+      "instructions": "Convert natural language requests into Unix commands.",
+      "fields": [
+        {
+          "prefix": "Request:",
+          "description": "what the user wants to do"
+        },
+        {
+          "prefix": "Command:",
+          "description": "the Unix command to accomplish this"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.14",
+      "dspy": "3.3.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

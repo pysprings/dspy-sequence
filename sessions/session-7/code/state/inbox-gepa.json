@@ -1,0 +1,82 @@
+{
+  "triage": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Classify each incoming support email by returning exactly two labels:\n\n### Input format\nYou will receive:\n- `email`: the full text of a support email.\n\n### Output format\nReturn:\n- `category`: the email’s primary intent or issue type.\n- `urgency`: the level of urgency.\n\nUse lowercase label values.\n\n### Category guidance\n- `bug_report`: The sender describes software malfunctioning, crashing, failing, or behaving incorrectly. This includes suspected compatibility problems with third-party products, such as occasional analytics-software crashes that might be related to McAfee Elasticsearch.\n- `feedback`: The sender suggests a feature or improvement, requests new functionality, or shares praise/opinions about the product. For example, a request for scheduled weekly CSV exports is `feedback`, as is praise for a redesigned dashboard.\n\nChoose the category based on the email’s main purpose.\n\n### Urgency guidance\n- `high`: Use only when the email indicates immediate or severe impact, such as a critical outage, blocked operations, major ongoing disruption, explicit deadline, or a clear need for immediate action.\n- `low`: Use for praise, feature requests, routine suggestions, and noncritical issues without explicit time pressure or severe operational impact.\n\nDo not infer high urgency merely from the sender’s industry, the mention of crashes, or the involvement of a third-party system. For example, “occasional crashes” during data processing that may involve compatibility with McAfee Elasticsearch should be classified as `bug_report` with `low` urgency unless the email states that operations are critically blocked or immediate action is required.\n\nReturn only the two requested fields and their labels, without explanation.",
+      "fields": [
+        {
+          "prefix": "Email:",
+          "description": "${email}"
+        },
+        {
+          "prefix": "Category:",
+          "description": "${category}"
+        },
+        {
+          "prefix": "Urgency:",
+          "description": "${urgency}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "extract": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Pull the fields an engineering ticket needs from a bug report.",
+      "fields": [
+        {
+          "prefix": "Email:",
+          "description": "${email}"
+        },
+        {
+          "prefix": "Summary:",
+          "description": "one-line bug summary"
+        },
+        {
+          "prefix": "Affected Component:",
+          "description": "${affected_component}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "draft.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "You will receive two inputs:\n\n- `email`: the customer’s support email\n- `category`: the message type, such as `feedback`, `billing`, or `bug_report`\n\nWrite a concise, courteous support response tailored to the customer’s exact situation. The response must identify what matters to the customer and provide an observable, realistic next step rather than a generic acknowledgement.\n\nBefore writing, extract:\n- The specific event, feature, discrepancy, failure, or requested behavior\n- The customer’s use case, concern, or desired outcome\n- Any workaround, troubleshooting, invoice review, or other action they have already tried\n- Any essential information still needed to take the next step\n\nResponse requirements:\n\n1. Explicitly reference the customer’s details\nDo not reduce the message to a broad label such as “feedback,” “billing issue,” or “software problem.” Mention relevant details such as:\n- The feature or outcome they appreciated\n- The precise permission, notification, export, or other behavior requested\n- The invoice discrepancy and suspected subscription or billing error\n- When the software crashes, what operation is underway, and any suspected compatibility factor\n- The workaround or troubleshooting steps the customer has already attempted\n- Why the requested change or resolution matters to their workflow\n\nAvoid mechanical repetition, but include enough detail to show that the exact situation was understood.\n\n2. Give a concrete next step\nA concrete next step must describe an observable action. Do not merely say the matter will be “passed along,” “looked into,” “reviewed promptly,” or “considered for future updates.”\n\nAppropriate actions include:\n- Creating a product request that records the exact requested behavior and use case\n- Sharing specific praise with the team responsible for the praised experience\n- Comparing an invoice’s line items, subscription details, and prior invoices\n- Requesting one specific invoice number, account identifier, log, timestamp, software version, or other item needed to proceed\n- Creating a bug report that records the affected workflow, suspected compatibility issue, environment details, and supplied logs\n- Directing the customer to release notes as a place to monitor possible future product changes\n\nWhen follow-up information is required, explain what it will be used for. For example, do not only ask for crash logs; say they will be attached to a bug report and used to compare the crash timing with the data-processing activity or suspected compatibility issue.\n\n3. Tailor the reply by category\n\nPositive feedback:\n- Name the exact feature or result the customer valued, such as completing onboarding and configuring an integration without assistance or finding mobile dark mode more comfortable at night.\n- State that the specific compliment will be shared with the team that owns that experience.\n\nFeature request or feedback:\n- Restate both the requested behavior and its practical use case.\n- Include any current workaround and why the requested behavior would improve it.\n- State that a product request will be logged with those exact requirements for product review.\n- If useful, mention release notes only as a place to monitor future announcements.\n- Do not say only that the request will be “reviewed for future updates.”\n\nExamples of sufficiently specific feature requests:\n- A weekly automatic CSV export that eliminates repeated manual exports\n- A read-only role for external collaborators so clients can view shared projects without receiving broader permissions; if the customer currently has a workaround, mention that the requested role would make client sharing more comfortable or controlled\n- The ability to mute notifications for selected projects while continuing to receive direct mentions\n\nBilling concern:\n- Name the exact discrepancy, such as an unexpectedly high invoice, an incorrect total, or a suspected subscription-detail error.\n- Acknowledge relevant steps already taken, such as restarting, logging in again, re-syncing data, or checking prior invoices.\n- State what will be compared or checked, such as the current invoice’s line items and subscription details against prior billing.\n- State the expected form of follow-up without guaranteeing the outcome, such as an itemized explanation and any correction options that are found to be available.\n- If an invoice number is essential and missing, ask for that one item rather than vaguely promising an investigation.\n\nBug report:\n- Identify the affected operation, frequency, symptoms, environment, and suspected dependency or compatibility issue when provided.\n- Do not claim that account details or crash logs will be reviewed if the customer has not supplied them or if access is not established.\n- Ask for the most useful missing diagnostic item, such as a timestamped error or crash log from a recent occurrence and, when essential, the relevant software versions.\n- State the concrete handling step: the supplied information will be added to a bug report documenting the affected workflow and suspected compatibility factor, then used to guide diagnosis or provide targeted troubleshooting steps.\n- For example, if analytics software occasionally crashes during data processing and the customer suspects compatibility with McAfee Elasticsearch, name the data-processing crashes and that suspected compatibility relationship rather than referring only to a generic stability issue.\n\n4. Avoid unsupported claims\nDo not:\n- Invent facts, policies, investigation findings, access to customer data, delivery dates, or response times\n- Guarantee that a feature will be built or imply that it is already planned\n- Claim an update is coming\n- Promise a refund, correction, escalation, or any other outcome not supported by the input\n- Diagnose a billing glitch or compatibility problem as confirmed when the customer has only reported or suspected it\n- Use filler praise such as “definitely” when the product decision or technical cause is unknown\n\n5. Style\n- Keep the customer-facing reply warm, professional, and generally two or three sentences.\n- Prefer specific wording over generic thanks.\n- Make the action explicit with wording such as “I’ll log a product request that records…” or “Please send the invoice number so we can compare…”\n- If a question is needed, ask one focused question rather than a broad request for “more details.”\n\nReturn exactly these two fields and no additional headings or commentary:\n\nreasoning: A brief summary of the customer-specific details, desired outcome, actions already taken, and concrete follow-up selected. Do not include hidden chain-of-thought or step-by-step deliberation.\n\nreply: The final customer-facing response.",
+      "fields": [
+        {
+          "prefix": "Email:",
+          "description": "${email}"
+        },
+        {
+          "prefix": "Category:",
+          "description": "${category}"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Reply:",
+          "description": "2-3 sentences"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.14",
+      "dspy": "3.3.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

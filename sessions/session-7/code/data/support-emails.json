@@ -1,0 +1,263 @@
+{
+  "_source": "20 billing/bug_report emails curated verbatim from Tobi-Bueck/customer-support-tickets on Hugging Face (CC-BY-NC-4.0, English rows, subject dropped, body kept). 10 feedback emails generated with GPT-5.6 Sol because the dataset has almost no praise or feature requests, then reviewed. 6 test emails are Session 6's devset, unchanged. Labels: category and urgency assigned by hand for Session 7.",
+  "_rubric": "urgency=high when money was already taken or blocked, the product is unusable for the writer or their team, or a dated deadline or accessibility need is stated; otherwise low.",
+  "_splits": {
+    "train": 24,
+    "val": 6,
+    "test": 6
+  },
+  "examples": [
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "Could you add scheduled exports for CSV reports? Having a weekly export sent automatically would save our team a few manual steps."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I am currently encountering a sudden crash in the project management application, which might be caused by a conflict with my antivirus software. Despite restarting the application, ensuring my system is up to date, and temporarily disabling the antivirus, the problem continues to occur. In need of support to address this issue."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I am encountering issues with incorrect invoice totals due to a billing system glitch. Despite my attempts to resolve the issue by restarting, re-logging in, and re-syncing data, the problem has not been resolved. I would greatly appreciate your assistance in addressing this matter as soon as possible."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "Could you inform me about the payment methods available for the subscription plans? Please share more details if possible."
+    },
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "The latest export options are excellent—the custom date ranges and clean CSV formatting made our monthly reporting much simpler."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I am experiencing crashes when exporting audio projects in Avid Pro Tools on my iMac, even after updating the software and restarting my system. This seems to be related to compatibility issues."
+    },
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "high",
+      "source": "generated",
+      "email": "Could you add full keyboard navigation and screen-reader labels to the dashboard? One of our team members cannot use the product without these accessibility features, so this is blocking our rollout."
+    },
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "Your onboarding flow is one of the clearest I’ve used in a SaaS product. Our team connected the Slack integration and created its first workflow without needing a support call."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "Users have reported sporadic delays in response times within the project management SaaS. A recent database update may be the underlying cause. Restarting services and clearing caches temporarily resolves the issue; however, the problem persists and continues to impact user experience. Kindly investigate the matter and suggest a solution to restore optimal system performance."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "The digital services billing department of the agency mistakenly charged our account twice, which has led to cash flow problems due to a system error."
+    },
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "Just wanted to say the new dark mode looks great, especially in the mobile app. It’s much easier on my eyes during late-night check-ins."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I am reporting an issue with the SaaS platform where it crashed during project sync. I have checked the system logs and tried restarting the service, but the problem still exists. Could you please look into this and provide a timely solution? If additional information is needed, please inform me."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I recently received an invoice with an unexpectedly high amount for digital tools. Having reviewed my previous invoices and contacted support, I believe there may be an error in my subscription details. I urgently require assistance in addressing this discrepancy to prevent further billing issues."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I have been overcharged for licenses that were not used. I believe there is an error in the account configuration. I have checked the bills and reached out to the support team, but the issue remains unresolved."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "Our financial firm is facing occasional crashes with our analytics software during data processing, which might be related to compatibility issues with McAfee Elasticsearch."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "Received an incorrect invoice due to a billing system glitch. Despite my attempts to reconcile the charges and contacting support, no resolution has been reached. I would appreciate it if you could look into the matter and provide a corrected invoice as soon as possible."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "The investment optimization software used by the financial firm is not producing the anticipated analytical results. The problem might be due to data integration issues or incorrect input parameters. After verifying the data sources and running diagnostic tests, the issue remains unresolved. We require your assistance to resolve this and obtain the expected analytical outcomes."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "The SaaS platform stops functioning when creating a new project. I have restarted the server and reviewed the system logs, but the issue remains unresolved."
+    },
+    {
+      "split": "train",
+      "category": "bug_report",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "An error has been occurring with the Smart-Steckdose, impacting marketing campaigns due to connectivity issues. After rebooting and checking the settings, the problem still persists."
+    },
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "Would it be possible to offer more granular permissions, particularly a read-only role for external collaborators? We can work around this today, but it would make sharing projects with clients more comfortable."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I noticed an overcharge on several items on my last invoice and suspect a billing error or system issue. Despite prior communications with support and a thorough review of the invoice, the problem remains unresolved. Could you please investigate and rectify the charges? Please advise if you require further information from me to address this matter."
+    },
+    {
+      "split": "train",
+      "category": "billing",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "I am facing problems with double charges in my billing. After reviewing my account settings and contacting support, the issue still persists. It might be due to a system misconfiguration or an integration error. I need assistance to resolve this matter."
+    },
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "I’d love more control over mobile app notifications, such as muting specific projects while keeping direct mentions enabled. Not urgent, but it would help reduce noise."
+    },
+    {
+      "split": "train",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "The redesigned dashboard is fantastic. I can see our key metrics at a glance without digging through multiple pages."
+    },
+    {
+      "split": "val",
+      "category": "feedback",
+      "urgency": "high",
+      "source": "generated",
+      "email": "We urgently need the API to support exporting audit logs, including permission changes and login activity. This is required for our SOC 2 evidence collection deadline at the end of the month."
+    },
+    {
+      "split": "val",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "generated",
+      "email": "Your onboarding is already straightforward, though an optional interactive API walkthrough would be a nice addition. A few sample requests for common integrations could help new developers get started faster."
+    },
+    {
+      "split": "val",
+      "category": "bug_report",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "A critical incident has occurred with our project management SaaS, impacting multiple products such as Asana and GitLab. The issue might be due to recent system updates causing integration failures across platforms. We have restarted applications, cleared caches, and verified system configurations, but to no avail. An urgent investigation is needed to resolve this issue."
+    },
+    {
+      "split": "val",
+      "category": "bug_report",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "There are delays in generating investment reports due to performance problems with the data analytics software."
+    },
+    {
+      "split": "val",
+      "category": "billing",
+      "urgency": "high",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "There was an issue with the recent subscription payment which was declined. It could have happened due to insufficient funds or expired card. I checked the card details and made sure there was a sufficient balance, but the problem still persists."
+    },
+    {
+      "split": "val",
+      "category": "billing",
+      "urgency": "low",
+      "source": "hf:Tobi-Bueck/customer-support-tickets",
+      "email": "Can you provide comprehensive details regarding the billing plans and payment methods available for your SaaS project management platform?"
+    },
+    {
+      "split": "test",
+      "category": "bug_report",
+      "urgency": "high",
+      "source": "session-6 devset",
+      "email": "URGENT: the export button crashes the app for our whole team, we ship today!"
+    },
+    {
+      "split": "test",
+      "category": "billing",
+      "urgency": "high",
+      "source": "session-6 devset",
+      "email": "My card was declined but you still marked the invoice unpaid twice?"
+    },
+    {
+      "split": "test",
+      "category": "billing",
+      "urgency": "high",
+      "source": "session-6 devset",
+      "email": "I was charged twice for my March invoice. Please refund the duplicate."
+    },
+    {
+      "split": "test",
+      "category": "bug_report",
+      "urgency": "low",
+      "source": "session-6 devset",
+      "email": "Minor thing: the settings page misspells 'preferences' in the sidebar."
+    },
+    {
+      "split": "test",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "session-6 devset",
+      "email": "Could you add a CSV export option someday? Not blocking, just handy."
+    },
+    {
+      "split": "test",
+      "category": "feedback",
+      "urgency": "low",
+      "source": "session-6 devset",
+      "email": "Just wanted to say the new dashboard layout is a big improvement. Nice work."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "request": "check network connectivity to google.com",
+        "command": "ping -c 4 google.com"
+      },
+      {
+        "augmented": true,
+        "request": "rename report.txt to report-final.txt",
+        "command": "mv report.txt report-final.txt"
+      },
+      {
+        "augmented": true,
+        "request": "show free memory in human readable units",
+        "command": "free -h"
+      },
+      {
+        "augmented": true,
+        "request": "delete the file called temp.txt",
+        "command": "rm temp.txt"
+      }
+    ],
+    "signature": {
+      "instructions": "Convert natural language requests into Unix commands.",
+      "fields": [
+        {
+          "prefix": "Request:",
+          "description": "what the user wants to do"
+        },
+        {
+          "prefix": "Command:",
+          "description": "the Unix command to accomplish this"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.14",
+      "dspy": "3.3.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

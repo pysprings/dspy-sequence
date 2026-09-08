@@ -1,0 +1,17 @@
+{
+  "rubric": {
+    "grounded": "true if the reply names the customer's specific situation (the feature, the charge, the crash), not just a category word",
+    "actionable": "true if the reply states an observable action or outcome (log a request, send an invoice number, share with a team), not 'we will look into it'"
+  },
+  "marks": {
+    "claude": [
+      {"before": {"grounded": false, "actionable": false}, "after": {"grounded": true, "actionable": true}},
+      {"before": {"grounded": false, "actionable": false}, "after": {"grounded": true, "actionable": true}},
+      {"before": {"grounded": true,  "actionable": true},  "after": {"grounded": true, "actionable": true}},
+      {"before": {"grounded": true,  "actionable": false}, "after": {"grounded": true, "actionable": true}},
+      {"before": {"grounded": true,  "actionable": false}, "after": {"grounded": true, "actionable": true}},
+      {"before": {"grounded": true,  "actionable": false}, "after": {"grounded": true, "actionable": true}}
+    ],
+    "ryan": []
+  }
+}

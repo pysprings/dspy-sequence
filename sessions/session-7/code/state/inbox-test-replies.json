@@ -1,0 +1,146 @@
+[
+  {
+    "email": "URGENT: the export button crashes the app for our whole team, we ship today!",
+    "gold": "bug_report/high",
+    "before": {
+      "labels": "bug_report/high",
+      "reply": "[PRIORITY] Hello, thank you for bringing this urgent issue to our attention. We understand the impact this bug has on your team and are actively investigating the problem. We will update you as soon as a fix is available.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      }
+    },
+    "after": {
+      "labels": "bug_report/high",
+      "reply": "[PRIORITY] Thank you for alerting us about the export button crashing for your team during your urgent shipment today. Please send us any crash logs or error messages from the recent export attempt so we can include these details in a bug report and help diagnose the issue promptly.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": true
+      }
+    }
+  },
+  {
+    "email": "My card was declined but you still marked the invoice unpaid twice?",
+    "gold": "billing/high",
+    "before": {
+      "labels": "billing/high",
+      "reply": "[PRIORITY] Thank you for bringing this to our attention. We apologize for the inconvenience; we'll look into the issue immediately and ensure it is resolved as quickly as possible. Please hold on while we rectify the billing mistake.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      }
+    },
+    "after": {
+      "labels": "billing/low",
+      "reply": "Thank you for bringing this to our attention. Please provide the invoice number so we can review the billing record and verify whether the payment attempt was logged correctly or if there might be an error causing the invoice to be marked as unpaid twice after the declined card transaction.",
+      "judge": {
+        "category": true,
+        "urgency": false,
+        "grounded": true,
+        "actionable": true
+      }
+    }
+  },
+  {
+    "email": "I was charged twice for my March invoice. Please refund the duplicate.",
+    "gold": "billing/high",
+    "before": {
+      "labels": "billing/high",
+      "reply": "[PRIORITY] Thank you for bringing this to our attention. We will review your account and process a refund for the duplicate charge as soon as possible. You will receive a confirmation once the refund has been issued.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": true
+      }
+    },
+    "after": {
+      "labels": "billing/high",
+      "reply": "[PRIORITY] Please send us the invoice number or the transaction details so we can compare the charges and process the refund for the duplicate payment. Once we have that information, we'll promptly investigate and resolve the issue.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": true
+      }
+    }
+  },
+  {
+    "email": "Minor thing: the settings page misspells 'preferences' in the sidebar.",
+    "gold": "bug_report/low",
+    "before": {
+      "labels": "bug_report/low",
+      "reply": "Thank you for pointing out the typo in the preferences section. We appreciate your feedback and will work to correct it promptly.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": false
+      }
+    },
+    "after": {
+      "labels": "feedback/low",
+      "reply": "Thank you for catching the typo in the sidebar\u2014I've logged a feedback request to correct 'preferences.' We appreciate your attention to detail and will work to update it in an upcoming release.",
+      "judge": {
+        "category": false,
+        "urgency": true,
+        "grounded": true,
+        "actionable": true
+      }
+    }
+  },
+  {
+    "email": "Could you add a CSV export option someday? Not blocking, just handy.",
+    "gold": "feedback/low",
+    "before": {
+      "labels": "feedback/low",
+      "reply": "Thank you for your suggestion! We'll definitely consider adding a CSV export option in future updates to enhance usability. We appreciate your input.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      }
+    },
+    "after": {
+      "labels": "feedback/low",
+      "reply": "Thank you for suggesting a CSV export option; I\u2019ll log a product request that records this feature as a convenient addition. We appreciate your feedback and will review it during our product planning discussions.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": false
+      }
+    }
+  },
+  {
+    "email": "Just wanted to say the new dashboard layout is a big improvement. Nice work.",
+    "gold": "feedback/low",
+    "before": {
+      "labels": "feedback/low",
+      "reply": "Thank you so much for your kind words! We're glad to hear you like the new dashboard layout and appreciate your support.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": false
+      }
+    },
+    "after": {
+      "labels": "feedback/low",
+      "reply": "Thank you for your kind words! I'm glad to hear that the new dashboard layout has made a positive impact for you. I'll be sure to share your feedback with the design team.",
+      "judge": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      }
+    }
+  }
+]

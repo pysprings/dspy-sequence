@@ -69,17 +69,13 @@ neither.
 ```mermaid
 graph LR
     A["1. Few-shot demonstrations
-        run the program, keep the
-        runs the metric accepts"] --> D["demos slot"]
+        keep runs the metric accepts"] --> D["demos slot"]
     B["2. Instruction search
-        propose new instruction text,
-        score it, keep the best"] --> I["instructions slot"]
+        propose text, score it, keep the best"] --> I["instructions slot"]
     C["3. Finetuning
-        turn accepted runs into
-        training data for the weights"] --> W["LM weights"]
+        train the weights on accepted runs"] --> W["LM weights"]
     E["4. Program transformation
-        combine several programs,
-        e.g. majority vote"] --> N["a new wrapper module"]
+        combine several programs"] --> N["a new wrapper module"]
 
     style D fill:#4ecdc4
     style I fill:#4ecdc4

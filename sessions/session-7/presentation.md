@@ -60,6 +60,50 @@ maximize a metric. A typical optimizer takes three things:
 - **training inputs**, which can be small (5 to 10 examples) and can
   lack labels for some optimizers
 
+### Four approaches
+
+Every optimizer in DSPy searches in one of four ways. The first two
+change the prompt; the third changes the model; the fourth changes
+neither.
+
+```mermaid
+graph LR
+    A["1. Few-shot demonstrations
+        run the program, keep the
+        runs the metric accepts"] --> D["demos slot"]
+    B["2. Instruction search
+        propose new instruction text,
+        score it, keep the best"] --> I["instructions slot"]
+    C["3. Finetuning
+        turn accepted runs into
+        training data for the weights"] --> W["LM weights"]
+    E["4. Program transformation
+        combine several programs,
+        e.g. majority vote"] --> N["a new wrapper module"]
+
+    style D fill:#4ecdc4
+    style I fill:#4ecdc4
+```
+
+| Approach | How it searches | Optimizers | Cost profile |
+|---|---|---|---|
+| Few-shot demonstrations | run the program on training rows; keep traces the metric accepts as worked examples | `LabeledFewShot`, `BootstrapFewShot`, `BootstrapFewShotWithRandomSearch`, `KNNFewShot` | cheap; one program run per training row, times the number of candidate sets |
+| Instruction search | a second LM proposes instruction text; candidates are scored on a valset; the best survive | `COPRO`, `MIPROv2` (also writes demos), `SIMBA`, `GEPA` | a proposer or reflection model plus many metric calls |
+| Finetuning | accepted traces become a training set; the LM's weights are updated and the predictor points at the new model | `BootstrapFinetune`, `BetterTogether` | a finetuning job; the result is a smaller, faster model |
+| Program transformation | run several programs and combine their outputs | `Ensemble` | multiplies inference cost by the number of members |
+
+Instruction search splits again by how the proposal is made. MIPROv2
+and COPRO generate many candidate instructions up front and search
+over them, MIPROv2 with Bayesian optimization over instruction and
+demo combinations. GEPA and SIMBA generate one candidate at a time by
+showing an LM what went wrong on a few examples and asking it to
+rewrite the instruction. The second style uses the metric's feedback
+text, not just its score, and that is why today's runs use GEPA.
+
+This session covers approach 1 with `BootstrapFewShot` (§4) and
+approach 2 with GEPA (§5, §6). Approaches 3 and 4 are on the shelf in
+§8.
+
 What each optimizer writes, read from the DSPy 3.3.0 source:
 
 | Optimizer | Writes | Where in the source |

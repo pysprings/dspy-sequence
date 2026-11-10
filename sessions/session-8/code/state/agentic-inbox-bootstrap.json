@@ -1,0 +1,179 @@
+{
+  "triage": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "email": "Could you inform me about the payment methods available for the subscription plans? Please share more details if possible.",
+        "category": "billing",
+        "urgency": "low"
+      },
+      {
+        "augmented": true,
+        "email": "I am reporting an issue with the SaaS platform where it crashed during project sync. I have checked the system logs and tried restarting the service, but the problem still exists. Could you please look into this and provide a timely solution? If additional information is needed, please inform me.",
+        "category": "bug_report",
+        "urgency": "high"
+      }
+    ],
+    "signature": {
+      "instructions": "Classify an incoming support email.",
+      "fields": [
+        {
+          "prefix": "Email:",
+          "description": "${email}"
+        },
+        {
+          "prefix": "Category:",
+          "description": "${category}"
+        },
+        {
+          "prefix": "Urgency:",
+          "description": "${urgency}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "extract": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "email": "I am reporting an issue with the SaaS platform where it crashed during project sync. I have checked the system logs and tried restarting the service, but the problem still exists. Could you please look into this and provide a timely solution? If additional information is needed, please inform me.",
+        "summary": "Platform crash during project sync persists despite service restart",
+        "affected_component": "SaaS platform core service"
+      }
+    ],
+    "signature": {
+      "instructions": "Pull the fields an engineering ticket needs from a bug report.",
+      "fields": [
+        {
+          "prefix": "Email:",
+          "description": "${email}"
+        },
+        {
+          "prefix": "Summary:",
+          "description": "one-line bug summary"
+        },
+        {
+          "prefix": "Affected Component:",
+          "description": "${affected_component}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "draft.react": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "email": "Could you inform me about the payment methods available for the subscription plans? Please share more details if possible.",
+        "category": "billing",
+        "trajectory": "[[ ## thought_0 ## ]]\nThe customer is requesting information about payment methods for subscription plans, so I should look for relevant details in the support resources related to billing and payment options.\n\n[[ ## tool_name_0 ## ]]\nsearch_knowledge_base\n\n[[ ## tool_args_0 ## ]]\n{\"query\": \"payment methods for subscription plans\"}\n\n[[ ## observation_0 ## ]]\n[1] «Monthly and annual subscriptions can be paid by Visa, Mastercard, or American Express. Invoice payment with net-30 terms is available only for annual Business plans and must be arranged through support@planbook.example.»\n[2] «For a declined subscription payment, verify the card number, expiration date, billing address, and available funds before retrying under Settings > Billing. If the card remains blocked or the workspace cannot renew, email support@planbook.example; payment-blocking cases are high urgency.»\n[3] «Planbook offers Starter, Team, and Business subscriptions billed per seat on either a monthly or annual cycle. Owners can review the current plan, billing cycle, seat count, and invoices under Settings > Billing.»",
+        "next_thought": "The observation provides detailed information about the available payment methods for subscription plans, including credit card options and invoice payments for specific plans. I should synthesize this information into a clear and concise reply to address the customer's inquiry comprehensively.",
+        "next_tool_name": "finish",
+        "next_tool_args": {}
+      },
+      {
+        "augmented": true,
+        "email": "I am reporting an issue with the SaaS platform where it crashed during project sync. I have checked the system logs and tried restarting the service, but the problem still exists. Could you please look into this and provide a timely solution? If additional information is needed, please inform me.",
+        "category": "bug_report",
+        "trajectory": "",
+        "next_thought": "Since the issue involves a platform crash during project sync, I should look into the knowledge base for common bugs or outages related to this problem, as well as any known solutions or workarounds.",
+        "next_tool_name": "search_knowledge_base",
+        "next_tool_args": {
+          "query": "platform crash during project sync"
+        }
+      }
+    ],
+    "signature": {
+      "instructions": "Write a short, courteous reply to a support email.\n\nYou are an Agent. In each episode, you will be given the fields `email`, `category` as input. And you can see your past trajectory so far.\nYour goal is to use one or more of the supplied tools to collect any necessary information for producing `reply`.\n\nTo do this, you will interleave next_thought, next_tool_name, and next_tool_args in each turn, and also when finishing the task.\nAfter each tool call, you receive a resulting observation, which gets appended to your trajectory.\n\nWhen writing next_thought, you may reason about the current situation and plan for future steps.\nWhen selecting the next_tool_name and its next_tool_args, the tool must be one of:\n\n(1) search_knowledge_base, whose description is <desc>Search Planbook's help center and policy pages. Returns the three  passages most relevant to the query. Use it to find the refund rule, the  known issue, or the support commitment that applies to a customer's email.</desc>. It takes arguments {'query': {'type': 'string'}}.\n(2) finish, whose description is <desc>Marks the task as complete. That is, signals that all information for producing the outputs, i.e. `reply`, are now available to be extracted.</desc>. It takes arguments {}.\nWhen providing `next_tool_args`, the value inside the field must be in JSON format",
+      "fields": [
+        {
+          "prefix": "Email:",
+          "description": "${email}"
+        },
+        {
+          "prefix": "Category:",
+          "description": "${category}"
+        },
+        {
+          "prefix": "Trajectory:",
+          "description": "${trajectory}"
+        },
+        {
+          "prefix": "Next Thought:",
+          "description": "${next_thought}"
+        },
+        {
+          "prefix": "Next Tool Name:",
+          "description": "${next_tool_name}"
+        },
+        {
+          "prefix": "Next Tool Args:",
+          "description": "${next_tool_args}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "draft.extract.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "email": "Could you inform me about the payment methods available for the subscription plans? Please share more details if possible.",
+        "category": "billing",
+        "trajectory": "[[ ## thought_0 ## ]]\nThe customer is requesting information about payment methods for subscription plans, so I should look for relevant details in the support resources related to billing and payment options.\n\n[[ ## tool_name_0 ## ]]\nsearch_knowledge_base\n\n[[ ## tool_args_0 ## ]]\n{\"query\": \"payment methods for subscription plans\"}\n\n[[ ## observation_0 ## ]]\n[1] «Monthly and annual subscriptions can be paid by Visa, Mastercard, or American Express. Invoice payment with net-30 terms is available only for annual Business plans and must be arranged through support@planbook.example.»\n[2] «For a declined subscription payment, verify the card number, expiration date, billing address, and available funds before retrying under Settings > Billing. If the card remains blocked or the workspace cannot renew, email support@planbook.example; payment-blocking cases are high urgency.»\n[3] «Planbook offers Starter, Team, and Business subscriptions billed per seat on either a monthly or annual cycle. Owners can review the current plan, billing cycle, seat count, and invoices under Settings > Billing.»\n\n[[ ## thought_1 ## ]]\nThe observation provides detailed information about the available payment methods for subscription plans, including credit card options and invoice payments for specific plans. I should synthesize this information into a clear and concise reply to address the customer's inquiry comprehensively.\n\n[[ ## tool_name_1 ## ]]\nfinish\n\n[[ ## tool_args_1 ## ]]\n{}\n\n[[ ## observation_1 ## ]]\nCompleted.",
+        "reasoning": "The information retrieved indicates that the available payment methods include credit cards such as Visa, Mastercard, and American Express. Additionally, invoice payments with net-30 terms are available for annual Business plans upon support arrangement. A clear, concise summary of these options will effectively answer the customer's inquiry.",
+        "reply": "Thank you for your inquiry. Our subscription plans can be paid using Visa, Mastercard, or American Express. If you're interested in invoice payments with net-30 terms, these are available for annual Business plans upon arrangement with our support team."
+      },
+      {
+        "augmented": true,
+        "email": "I am reporting an issue with the SaaS platform where it crashed during project sync. I have checked the system logs and tried restarting the service, but the problem still exists. Could you please look into this and provide a timely solution? If additional information is needed, please inform me.",
+        "category": "bug_report",
+        "trajectory": "[[ ## thought_0 ## ]]\nSince the issue involves a platform crash during project sync, I should look into the knowledge base for common bugs or outages related to this problem, as well as any known solutions or workarounds.\n\n[[ ## tool_name_0 ## ]]\nsearch_knowledge_base\n\n[[ ## tool_args_0 ## ]]\n{\"query\": \"platform crash during project sync\"}\n\n[[ ## observation_0 ## ]]\n[1] «For repeated iOS or Android crashes, update Planbook from the app store, restart the device, and retry the same project or task. If the crash continues, email support@planbook.example with the device model, operating-system version, Planbook app version, and the action immediately before the crash.»\n[2] «If task changes do not sync, confirm that the device is online, refresh the project, and compare the task in the web app and mobile app. If edits remain missing, avoid making competing changes and send support@planbook.example the workspace, task link, affected platforms, and approximate edit time.»\n[3] «Known issue: some Android offline edits can remain queued after connectivity returns, delaying their appearance on the web app. A server-side mitigation is currently being monitored, with the next status update due within 24 hours; opening the project and pulling down to refresh can restart sync.»\n\n[[ ## thought_1 ## ]]\nThe knowledge base results mention a known issue related to Android offline edits and suggest that refreshing the project might help. Since the user's issue involves a crash during project sync, this could be related to a known bug or an underlying connectivity issue, so I should look for additional related information to confirm and provide a more specific reply.\n\n[[ ## tool_name_1 ## ]]\nsearch_knowledge_base\n\n[[ ## tool_args_1 ## ]]\n{\"query\": \"platform crash during project sync\"}\n\n[[ ## observation_1 ## ]]\n[1] «For repeated iOS or Android crashes, update Planbook from the app store, restart the device, and retry the same project or task. If the crash continues, email support@planbook.example with the device model, operating-system version, Planbook app version, and the action immediately before the crash.»\n[2] «If task changes do not sync, confirm that the device is online, refresh the project, and compare the task in the web app and mobile app. If edits remain missing, avoid making competing changes and send support@planbook.example the workspace, task link, affected platforms, and approximate edit time.»\n[3] «Known issue: some Android offline edits can remain queued after connectivity returns, delaying their appearance on the web app. A server-side mitigation is currently being monitored, with the next status update due within 24 hours; opening the project and pulling down to refresh can restart sync.»\n\n[[ ## thought_2 ## ]]\nThe search results indicate that the crash might be related to a known issue with Android offline edits or connectivity problems. Since the user's report is about a platform crash during project sync, I should verify if this is a known bug and consider suggesting the user update the app or try refreshing the project as initial troubleshooting steps, while also asking for more details if needed.\n\n[[ ## tool_name_2 ## ]]\nsearch_knowledge_base\n\n[[ ## tool_args_2 ## ]]\n{\"query\": \"platform crash during project sync\"}\n\n[[ ## observation_2 ## ]]\n[1] «For repeated iOS or Android crashes, update Planbook from the app store, restart the device, and retry the same project or task. If the crash continues, email support@planbook.example with the device model, operating-system version, Planbook app version, and the action immediately before the crash.»\n[2] «If task changes do not sync, confirm that the device is online, refresh the project, and compare the task in the web app and mobile app. If edits remain missing, avoid making competing changes and send support@planbook.example the workspace, task link, affected platforms, and approximate edit time.»\n[3] «Known issue: some Android offline edits can remain queued after connectivity returns, delaying their appearance on the web app. A server-side mitigation is currently being monitored, with the next status update due within 24 hours; opening the project and pulling down to refresh can restart sync.»\n\n[[ ## thought_3 ## ]]\nThe search results repeatedly mention updating the app, refreshing the project, and connectivity checks as initial troubleshooting steps. Since the user's issue involves a crash during project sync, it is likely related to known issues with offline edits or connectivity problems. I should now confirm if the crash matches any of these known issues and suggest these steps accordingly, while also asking for additional details if necessary.\n\n[[ ## tool_name_3 ## ]]\nsearch_knowledge_base\n\n[[ ## tool_args_3 ## ]]\n{\"query\": \"platform crash during project sync\"}\n\n[[ ## observation_3 ## ]]\n[1] «For repeated iOS or Android crashes, update Planbook from the app store, restart the device, and retry the same project or task. If the crash continues, email support@planbook.example with the device model, operating-system version, Planbook app version, and the action immediately before the crash.»\n[2] «If task changes do not sync, confirm that the device is online, refresh the project, and compare the task in the web app and mobile app. If edits remain missing, avoid making competing changes and send support@planbook.example the workspace, task link, affected platforms, and approximate edit time.»\n[3] «Known issue: some Android offline edits can remain queued after connectivity returns, delaying their appearance on the web app. A server-side mitigation is currently being monitored, with the next status update due within 24 hours; opening the project and pulling down to refresh can restart sync.»",
+        "reasoning": "The knowledge base indicates that platform crashes during project sync may be related to known issues involving offline edits or connectivity problems. Common troubleshooting steps include updating the app, restarting the device, and refreshing the project. To assist the user effectively, I will suggest these steps and request additional details if necessary to diagnose whether their issue aligns with the known bugs or requires further investigation.",
+        "reply": "Thank you for reporting the issue. Please try updating your app to the latest version, restarting your device, and refreshing the project to see if this resolves the crash. If the problem persists, could you provide additional details such as your device model, operating system version, and the action you were performing immediately before the crash?"
+      }
+    ],
+    "signature": {
+      "instructions": "Write a short, courteous reply to a support email.",
+      "fields": [
+        {
+          "prefix": "Email:",
+          "description": "${email}"
+        },
+        {
+          "prefix": "Category:",
+          "description": "${category}"
+        },
+        {
+          "prefix": "Trajectory:",
+          "description": "${trajectory}"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Reply:",
+          "description": "2-3 sentences"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.14",
+      "dspy": "3.3.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "_source": "Generated with GPT-5.6 Sol from a one-page product description of Planbook, a fictional project management SaaS, and the Session 7 urgency rubric. No support email was shown to the generator. Reviewed and edited by hand for Session 8. Passages exist to describe the product, not to answer the test split; a test email with no matching passage is a real gap.",
+  "_product": "Planbook is a project management SaaS for small and mid-sized teams. Teams create projects, assign tasks, track progress on a dashboard, and sync work across the web app, a mobile app (iOS and Android, with dark mode), and integrations (Slack, Google Calendar, and a REST API with audit-log access on the Business plan). Reports and dashboards can be exported to CSV and PDF, with custom date ranges; scheduled exports are on the roadmap. Roles are Owner, Admin, Member, and Guest (read-only). Settings has Preferences, Notifications, Members, Billing, and Integrations pages. Billing: subscriptions are Starter, Team, and Business, billed monthly or annually per seat, paid by card (Visa, Mastercard, Amex) or, on annual Business plans, by invoice with net-30 terms. Invoices are emailed on the billing date and listed under Settings > Billing. Seat changes prorate on the next invoice. Unused seats are not refunded automatically but can be removed at any time. Support commitments: support@planbook.example answers within one business day; billing disputes within two business days; incidents that block a whole team are treated as priority and get a first response within four hours during business hours. Status page at status.planbook.example. Known issues are listed in the help center and get a public fix date when one exists. Feature requests go to the product board and are tagged by theme; the team replies with whether the request is planned, under consideration, or not planned. Accessibility issues are treated as bugs, not feature requests.",
+  "passages": [
+    {
+      "id": "refund-requests",
+      "topic": "billing",
+      "text": "Refunds are not issued automatically, including for unused seats. Email support@planbook.example with the workspace name, invoice number, charge date, and reason for the request; because payment has already been taken, support treats the request as high urgency and responds within two business days."
+    },
+    {
+      "id": "duplicate-card-charges",
+      "topic": "billing",
+      "text": "Report a suspected duplicate charge to support@planbook.example and include both charge dates, amounts, and the last four digits of the card. Duplicate-charge reports are high urgency because money has already been taken, and billing support responds within two business days."
+    },
+    {
+      "id": "declined-card-payments",
+      "topic": "billing",
+      "text": "For a declined subscription payment, verify the card number, expiration date, billing address, and available funds before retrying under Settings > Billing. If the card remains blocked or the workspace cannot renew, email support@planbook.example; payment-blocking cases are high urgency."
+    },
+    {
+      "id": "invoice-disputes",
+      "topic": "billing",
+      "text": "Dispute an invoice by emailing support@planbook.example with the invoice number, disputed line item, and expected correction. Invoice disputes receive a response within two business days and are high urgency when payment has already been collected or is blocking service."
+    },
+    {
+      "id": "subscription-plans-and-cycles",
+      "topic": "billing",
+      "text": "Planbook offers Starter, Team, and Business subscriptions billed per seat on either a monthly or annual cycle. Owners can review the current plan, billing cycle, seat count, and invoices under Settings > Billing."
+    },
+    {
+      "id": "accepted-payment-methods",
+      "topic": "billing",
+      "text": "Monthly and annual subscriptions can be paid by Visa, Mastercard, or American Express. Invoice payment with net-30 terms is available only for annual Business plans and must be arranged through support@planbook.example."
+    },
+    {
+      "id": "seat-change-proration",
+      "topic": "billing",
+      "text": "Owners can add or remove seats from Settings > Members, and seat changes are prorated on the next invoice. Unused seats are not refunded automatically, but they may be removed at any time to prevent future per-seat charges."
+    },
+    {
+      "id": "business-invoice-terms",
+      "topic": "billing",
+      "text": "Invoices are emailed on the billing date and remain available under Settings > Billing. Annual Business invoices use net-30 terms, so payment is due 30 calendar days after the invoice date."
+    },
+    {
+      "id": "billing-records-and-receipts",
+      "topic": "billing",
+      "text": "Owners can retrieve prior invoices and current billing details from Settings > Billing. If an invoice is missing from that page or was not emailed on the billing date, contact support@planbook.example and expect a billing response within two business days."
+    },
+    {
+      "id": "report-a-bug",
+      "topic": "bugs",
+      "text": "Report a Planbook bug to support@planbook.example with the affected workspace, web or mobile platform, app or browser version, steps to reproduce, expected result, and actual result. Include screenshots or timestamps when available, but do not include passwords, payment-card numbers, or API tokens."
+    },
+    {
+      "id": "priority-team-blocking-incidents",
+      "topic": "bugs",
+      "text": "An incident is priority when it makes Planbook unusable for an entire team, such as preventing all members from opening projects or saving tasks. Email support@planbook.example with the subject “Team blocked” and the affected workspace; the first response is due within four hours during business hours."
+    },
+    {
+      "id": "known-dashboard-date-filter-issue",
+      "topic": "bugs",
+      "text": "Known issue: after a workspace time-zone change, a dashboard custom date range may continue showing the previous range until the page is reloaded. The fix is in quality assurance and is targeted for a web deployment within seven days; reloading the dashboard and selecting the range again is the current workaround."
+    },
+    {
+      "id": "known-android-offline-sync-delay",
+      "topic": "bugs",
+      "text": "Known issue: some Android offline edits can remain queued after connectivity returns, delaying their appearance on the web app. A server-side mitigation is currently being monitored, with the next status update due within 24 hours; opening the project and pulling down to refresh can restart sync."
+    },
+    {
+      "id": "known-pdf-label-truncation",
+      "topic": "bugs",
+      "text": "Known issue: PDF reports can truncate unusually long project or task labels, while CSV exports retain the full text. The issue is confirmed but has no public fix date yet, and the Known Issues page will be updated weekly until a release date is available."
+    },
+    {
+      "id": "hotfix-policy",
+      "topic": "bugs",
+      "text": "Planbook may issue a hotfix when a defect blocks a whole team, risks data loss, or prevents paid access. Lower-impact defects are scheduled through the normal release process, and incident progress is posted at status.planbook.example when service availability is affected."
+    },
+    {
+      "id": "mobile-crash-troubleshooting",
+      "topic": "bugs",
+      "text": "For repeated iOS or Android crashes, update Planbook from the app store, restart the device, and retry the same project or task. If the crash continues, email support@planbook.example with the device model, operating-system version, Planbook app version, and the action immediately before the crash."
+    },
+    {
+      "id": "task-sync-troubleshooting",
+      "topic": "bugs",
+      "text": "If task changes do not sync, confirm that the device is online, refresh the project, and compare the task in the web app and mobile app. If edits remain missing, avoid making competing changes and send support@planbook.example the workspace, task link, affected platforms, and approximate edit time."
+    },
+    {
+      "id": "report-and-dashboard-exports",
+      "topic": "features",
+      "text": "Reports and dashboards can be exported as CSV or PDF with a custom date range. Open the relevant report or dashboard, select the date range, and use its Export control to choose the file format."
+    },
+    {
+      "id": "progress-dashboard",
+      "topic": "features",
+      "text": "The Planbook dashboard shows project and task progress for the selected workspace and date range. If the displayed totals appear stale, reload the page and verify the custom date range before reporting a bug."
+    },
+    {
+      "id": "mobile-app-and-dark-mode",
+      "topic": "features",
+      "text": "Planbook has mobile apps for iOS and Android, and both support dark mode. Mobile display options are managed from Settings > Preferences or the device appearance setting, depending on the installed app version."
+    },
+    {
+      "id": "notification-settings",
+      "topic": "features",
+      "text": "Members manage available alerts under Settings > Notifications. When reporting a missing notification, provide the notification type, project, expected delivery time, and whether the issue affects in-app, mobile, or integration notifications."
+    },
+    {
+      "id": "workspace-roles",
+      "topic": "features",
+      "text": "Planbook roles are Owner, Admin, Member, and Guest. Guests are read-only, while workspace membership and role assignments are managed from Settings > Members by users with the required administrative permission."
+    },
+    {
+      "id": "rest-api-and-audit-logs",
+      "topic": "features",
+      "text": "Planbook provides a REST API for programmatic access to supported workspace data. API access to audit logs requires the Business plan; account administrators should verify the plan under Settings > Billing before reporting a missing audit-log endpoint."
+    },
+    {
+      "id": "slack-integration",
+      "topic": "features",
+      "text": "Connect or review the Slack integration under Settings > Integrations. For a delivery problem, confirm that the connection is active and then report the workspace, Slack channel, event type, and timestamp to support@planbook.example."
+    },
+    {
+      "id": "google-calendar-integration",
+      "topic": "features",
+      "text": "The Google Calendar connection is managed under Settings > Integrations. If calendar items stop syncing, reconnect the account and report the affected calendar, task or project, direction of sync, and last successful sync time if the problem continues."
+    },
+    {
+      "id": "standard-support-response",
+      "topic": "support",
+      "text": "General questions and low-urgency feedback should be sent to support@planbook.example. Planbook responds within one business day, while billing disputes have a two-business-day response commitment."
+    },
+    {
+      "id": "support-urgency-triage",
+      "topic": "support",
+      "text": "Support marks a case high urgency when money has already been taken or blocked, Planbook is unusable for the writer or the whole team, or the request states a dated deadline or accessibility need. Other billing questions, bug reports, and feedback are low urgency unless one of those conditions is present."
+    },
+    {
+      "id": "feature-request-process",
+      "topic": "support",
+      "text": "Send feature requests to support@planbook.example with the workflow, desired outcome, and who would use it. The request is added to the product board, tagged by theme, and answered as planned, under consideration, or not planned."
+    },
+    {
+      "id": "service-status-and-known-issues",
+      "topic": "support",
+      "text": "Check status.planbook.example for active service incidents and recovery updates. Product-specific defects are listed on the help center’s Known Issues page, which includes a public fix date when one has been confirmed."
+    },
+    {
+      "id": "report-accessibility-barriers",
+      "topic": "accessibility",
+      "text": "Report an accessibility barrier to support@planbook.example with the affected page, assistive technology, browser or app version, and steps that encounter the barrier. Accessibility reports are handled as bugs rather than feature requests."
+    },
+    {
+      "id": "urgent-accessibility-needs",
+      "topic": "accessibility",
+      "text": "An accessibility report is high urgency when it prevents the user from completing required work or includes a dated need, such as an export required for a meeting. Put “Accessibility” and the deadline in the email subject to support@planbook.example so the support agent can prioritize it."
+    },
+    {
+      "id": "scheduled-export-roadmap",
+      "topic": "features",
+      "text": "Scheduled exports are on the Planbook roadmap but are not currently available. Submit the required format, frequency, recipients, and business deadline to support@planbook.example as a feature request; the product team will classify it as planned, under consideration, or not planned."
+    }
+  ]
+}

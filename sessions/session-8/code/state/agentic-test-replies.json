@@ -1,0 +1,101 @@
+[
+  {
+    "email": "URGENT: the export button crashes the app for our whole team, we ship today!",
+    "gold": "bug_report/high",
+    "searches": [
+      {
+        "query": "export button crash app"
+      },
+      {}
+    ],
+    "reply": "[PRIORITY] Thank you for reporting this urgent issue. Please contact support@planbook.example with your device details, and we will do our best to assist you promptly given your upcoming shipping deadline.",
+    "checks": {
+      "category": true,
+      "urgency": true,
+      "grounded": false,
+      "actionable": false
+    }
+  },
+  {
+    "email": "My card was declined but you still marked the invoice unpaid twice?",
+    "gold": "billing/high",
+    "searches": [
+      {
+        "query": "billing policy regarding declined payments and invoice marking"
+      },
+      {}
+    ],
+    "reply": "[PRIORITY] Thank you for bringing this to our attention. Please contact our support team so we can review your account and resolve the issue with the invoice and card decline. We're here to help ensure everything is clarified and corrected promptly.",
+    "checks": {
+      "category": true,
+      "urgency": true,
+      "grounded": false,
+      "actionable": false
+    }
+  },
+  {
+    "email": "I was charged twice for my March invoice. Please refund the duplicate.",
+    "gold": "billing/high",
+    "searches": [
+      {
+        "query": "refund policy duplicate charges"
+      },
+      {}
+    ],
+    "reply": "[PRIORITY] Thank you for reaching out. Please rest assured that we are reviewing your duplicate charge and will respond within two business days with further assistance. We appreciate your patience as we resolve this issue promptly.",
+    "checks": {
+      "category": true,
+      "urgency": true,
+      "grounded": false,
+      "actionable": true
+    }
+  },
+  {
+    "email": "Minor thing: the settings page misspells 'preferences' in the sidebar.",
+    "gold": "bug_report/low",
+    "searches": [
+      {
+        "query": "preferences misspelling in settings page"
+      },
+      {}
+    ],
+    "reply": "Thank you for pointing out the typo in the preferences section of the settings page. We appreciate your feedback and will review this to improve our interface. Please feel free to share any other suggestions or concerns.",
+    "checks": {
+      "category": true,
+      "urgency": true,
+      "grounded": true,
+      "actionable": false
+    }
+  },
+  {
+    "email": "Could you add a CSV export option someday? Not blocking, just handy.",
+    "gold": "feedback/low",
+    "searches": [
+      {
+        "query": "CSV export feature request policy or acknowledgment template"
+      },
+      {}
+    ],
+    "reply": "Thank you for your suggestion! CSV exports are available for reports and dashboards, and scheduled exports are on our roadmap. If you'd like to formally request this feature, please send your details to support@planbook.example, and we will consider it for future development.",
+    "checks": {
+      "category": true,
+      "urgency": true,
+      "grounded": true,
+      "actionable": false
+    }
+  },
+  {
+    "email": "Just wanted to say the new dashboard layout is a big improvement. Nice work.",
+    "gold": "feedback/low",
+    "searches": [
+      {}
+    ],
+    "reply": "Thank you for your kind words! We're delighted to hear that you are enjoying the new dashboard layout. Your feedback truly motivates us to keep improving.",
+    "checks": {
+      "category": true,
+      "urgency": true,
+      "grounded": false,
+      "actionable": false
+    }
+  }
+]

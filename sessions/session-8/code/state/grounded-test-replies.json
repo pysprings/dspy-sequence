@@ -1,0 +1,164 @@
+[
+  {
+    "email": "URGENT: the export button crashes the app for our whole team, we ship today!",
+    "gold": "bug_report/high",
+    "baseline": {
+      "reply": "[PRIORITY] Hello, thank you for bringing this urgent issue to our attention. We understand the impact this bug has on your team and are actively investigating the problem. We will update you as soon as a fix is available.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      }
+    },
+    "grounded": {
+      "reply": "[PRIORITY] Thank you for alerting us to this critical issue. Please email support@planbook.example with the subject \u201cTeam blocked\u201d and include details about your workspace so our team can assist you as quickly as possible during this urgent situation.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": true
+      },
+      "context": [
+        "Scheduled exports are on the Planbook roadmap but are not currently available. Submit the required format, frequency, recipients, and business deadline to support@planbook.example as a feature request; the product team will classify it as planned, under consideration, or not planned.",
+        "An incident is priority when it makes Planbook unusable for an entire team, such as preventing all members from opening projects or saving tasks. Email support@planbook.example with the subject \u201cTeam blocked\u201d and the affected workspace; the first response is due within four hours during business hours.",
+        "For repeated iOS or Android crashes, update Planbook from the app store, restart the device, and retry the same project or task. If the crash continues, email support@planbook.example with the device model, operating-system version, Planbook app version, and the action immediately before the crash."
+      ]
+    }
+  },
+  {
+    "email": "My card was declined but you still marked the invoice unpaid twice?",
+    "gold": "billing/high",
+    "baseline": {
+      "reply": "[PRIORITY] Thank you for bringing this to our attention. We apologize for the inconvenience; we'll look into the issue immediately and ensure it is resolved as quickly as possible. Please hold on while we rectify the billing mistake.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      }
+    },
+    "grounded": {
+      "reply": "[PRIORITY] Thank you for reaching out. Since a declined payment and a suspected duplicate invoice have been identified, please email support@planbook.example with details of both charges, including dates, amounts, and the last four digits of your card, so we can investigate and resolve this promptly.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": false
+      },
+      "context": [
+        "For a declined subscription payment, verify the card number, expiration date, billing address, and available funds before retrying under Settings > Billing. If the card remains blocked or the workspace cannot renew, email support@planbook.example; payment-blocking cases are high urgency.",
+        "Report a suspected duplicate charge to support@planbook.example and include both charge dates, amounts, and the last four digits of the card. Duplicate-charge reports are high urgency because money has already been taken, and billing support responds within two business days.",
+        "Dispute an invoice by emailing support@planbook.example with the invoice number, disputed line item, and expected correction. Invoice disputes receive a response within two business days and are high urgency when payment has already been collected or is blocking service."
+      ]
+    }
+  },
+  {
+    "email": "I was charged twice for my March invoice. Please refund the duplicate.",
+    "gold": "billing/high",
+    "baseline": {
+      "reply": "[PRIORITY] Thank you for bringing this to our attention. We will review your account and process a refund for the duplicate charge as soon as possible. You will receive a confirmation once the refund has been issued.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": true
+      }
+    },
+    "grounded": {
+      "reply": "[PRIORITY] Thank you for bringing this to our attention. Please email support@planbook.example with the charge dates, amounts, and the last four digits of your card so we can promptly review and assist with the refund.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": true
+      },
+      "context": [
+        "Report a suspected duplicate charge to support@planbook.example and include both charge dates, amounts, and the last four digits of the card. Duplicate-charge reports are high urgency because money has already been taken, and billing support responds within two business days.",
+        "Refunds are not issued automatically, including for unused seats. Email support@planbook.example with the workspace name, invoice number, charge date, and reason for the request; because payment has already been taken, support treats the request as high urgency and responds within two business days.",
+        "Dispute an invoice by emailing support@planbook.example with the invoice number, disputed line item, and expected correction. Invoice disputes receive a response within two business days and are high urgency when payment has already been collected or is blocking service."
+      ]
+    }
+  },
+  {
+    "email": "Minor thing: the settings page misspells 'preferences' in the sidebar.",
+    "gold": "bug_report/low",
+    "baseline": {
+      "reply": "Thank you for pointing out the typo in the preferences section. We appreciate your feedback and will work to correct it promptly.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": false
+      }
+    },
+    "grounded": {
+      "reply": "Thank you for pointing out the misspelling of 'preferences' in the settings sidebar. We will pass this to our team for review and correction. We appreciate your feedback and support.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": true
+      },
+      "context": [
+        "Planbook has mobile apps for iOS and Android, and both support dark mode. Mobile display options are managed from Settings > Preferences or the device appearance setting, depending on the installed app version.",
+        "If task changes do not sync, confirm that the device is online, refresh the project, and compare the task in the web app and mobile app. If edits remain missing, avoid making competing changes and send support@planbook.example the workspace, task link, affected platforms, and approximate edit time.",
+        "Known issue: some Android offline edits can remain queued after connectivity returns, delaying their appearance on the web app. A server-side mitigation is currently being monitored, with the next status update due within 24 hours; opening the project and pulling down to refresh can restart sync."
+      ]
+    }
+  },
+  {
+    "email": "Could you add a CSV export option someday? Not blocking, just handy.",
+    "gold": "feedback/low",
+    "baseline": {
+      "reply": "Thank you for your suggestion! We'll definitely consider adding a CSV export option in future updates to enhance usability. We appreciate your input.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      }
+    },
+    "grounded": {
+      "reply": "Thank you for your suggestion! While scheduled exports are not yet available, you can export reports and dashboards as CSV using the current export feature. We'll keep your feedback in mind as we continue to improve the platform.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": false
+      },
+      "context": [
+        "Reports and dashboards can be exported as CSV or PDF with a custom date range. Open the relevant report or dashboard, select the date range, and use its Export control to choose the file format.",
+        "Scheduled exports are on the Planbook roadmap but are not currently available. Submit the required format, frequency, recipients, and business deadline to support@planbook.example as a feature request; the product team will classify it as planned, under consideration, or not planned.",
+        "Known issue: PDF reports can truncate unusually long project or task labels, while CSV exports retain the full text. The issue is confirmed but has no public fix date yet, and the Known Issues page will be updated weekly until a release date is available."
+      ]
+    }
+  },
+  {
+    "email": "Just wanted to say the new dashboard layout is a big improvement. Nice work.",
+    "gold": "feedback/low",
+    "baseline": {
+      "reply": "Thank you so much for your kind words! We're glad to hear you like the new dashboard layout and appreciate your support.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": true,
+        "actionable": false
+      }
+    },
+    "grounded": {
+      "reply": "Thank you for your kind words! We're glad to hear that you like the new dashboard layout and appreciate your feedback. If you have any suggestions or run into any issues, feel free to reach out.",
+      "checks": {
+        "category": true,
+        "urgency": true,
+        "grounded": false,
+        "actionable": false
+      },
+      "context": [
+        "Known issue: after a workspace time-zone change, a dashboard custom date range may continue showing the previous range until the page is reloaded. The fix is in quality assurance and is targeted for a web deployment within seven days; reloading the dashboard and selecting the range again is the current workaround.",
+        "The Planbook dashboard shows project and task progress for the selected workspace and date range. If the displayed totals appear stale, reload the page and verify the custom date range before reporting a bug.",
+        "Reports and dashboards can be exported as CSV or PDF with a custom date range. Open the relevant report or dashboard, select the date range, and use its Export control to choose the file format."
+      ]
+    }
+  }
+]

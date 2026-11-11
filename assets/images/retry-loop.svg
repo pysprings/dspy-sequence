@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 310" width="980" height="310" font-family="Helvetica, Arial, sans-serif">
+  <title>The retry loop around the draft step, as BestOfN and as Refine</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+    <marker id="arrow-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f6db5"/>
+    </marker>
+    <marker id="arrow-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c8641b"/>
+    </marker>
+    <style>
+      .pred  { fill: #d9f3f0; stroke: #2a9d8f; stroke-width: 2; }
+      .code  { fill: #f0f0f0; stroke: #888; stroke-width: 2; }
+      .data  { fill: #fff; stroke: #555; stroke-width: 1.5; }
+      .name  { font-size: 16px; font-weight: bold; fill: #222; text-anchor: middle; }
+      .kind  { font-size: 12px; fill: #555; text-anchor: middle; }
+      .label { font-size: 13px; font-style: italic; fill: #333; }
+      .flow  { fill: none; stroke: #555; stroke-width: 1.6; marker-end: url(#arrow); }
+      .best  { fill: none; stroke: #2f6db5; stroke-width: 2; marker-end: url(#arrow-b); }
+      .refine { fill: none; stroke: #c8641b; stroke-width: 2; marker-end: url(#arrow-r); }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="980" height="310" fill="#fefefe"/>
+
+  <!-- inputs -->
+  <rect class="data" x="20" y="44" width="140" height="64" rx="32"/>
+  <text class="label" x="90" y="64" text-anchor="middle">email</text>
+  <text class="label" x="90" y="81" text-anchor="middle">category</text>
+  <text class="label" x="90" y="98" text-anchor="middle">context</text>
+  <path class="flow" d="M 160 76 H 209"/>
+
+  <!-- draft -->
+  <rect class="pred" x="210" y="44" width="160" height="64" rx="8"/>
+  <text class="name" x="290" y="72">draft</text>
+  <text class="kind" x="290" y="92">one attempt</text>
+  <path class="flow" d="M 370 76 H 439"/>
+  <text class="label" x="405" y="68" text-anchor="middle">reply</text>
+
+  <!-- reward function -->
+  <rect class="code" x="440" y="44" width="180" height="64" rx="8"/>
+  <text class="name" x="530" y="72">reward function</text>
+  <text class="kind" x="530" y="92">a hard rule, then a judge</text>
+  <path class="flow" d="M 620 76 H 669"/>
+
+  <!-- decision -->
+  <path class="code" d="M 750 28 L 830 76 L 750 124 L 670 76 Z"/>
+  <text class="kind" x="750" y="72" style="fill:#222">reward at the</text>
+  <text class="kind" x="750" y="88" style="fill:#222">threshold?</text>
+  <path class="flow" d="M 830 76 H 869"/>
+  <text class="label" x="850" y="68" text-anchor="middle">yes</text>
+
+  <!-- send -->
+  <rect class="data" x="870" y="48" width="90" height="56" rx="28"/>
+  <text class="name" x="915" y="81">send</text>
+
+  <!-- no branch -->
+  <path d="M 750 124 V 170" fill="none" stroke="#555" stroke-width="1.6"/>
+  <text class="label" x="760" y="150">no, and attempts remain</text>
+
+  <!-- BestOfN path -->
+  <path class="best" d="M 750 170 H 335 V 109"/>
+  <text x="540" y="162" font-size="13" fill="#2f6db5" text-anchor="middle" font-weight="bold">BestOfN: draft again from the same prompt</text>
+
+  <!-- Refine path -->
+  <path class="refine" d="M 750 170 V 250 H 621"/>
+  <rect class="pred" x="440" y="218" width="180" height="64" rx="8" style="stroke:#c8641b"/>
+  <text class="name" x="530" y="246">hint writer</text>
+  <text class="kind" x="530" y="266">a predictor that Refine creates</text>
+  <path class="refine" d="M 440 250 H 250 V 109"/>
+  <text x="345" y="242" font-size="13" fill="#c8641b" text-anchor="middle" font-style="italic">hint</text>
+  <text x="335" y="274" font-size="13" fill="#c8641b" text-anchor="middle" font-weight="bold">Refine: draft again with a hint</text>
+
+  <!-- after N attempts -->
+  <text x="772" y="222" font-size="12" fill="#333">When no attempt remains,</text>
+  <text x="772" y="238" font-size="12" fill="#333">both loops send the</text>
+  <text x="772" y="254" font-size="12" fill="#333">highest-scoring attempt.</text>
+</svg>

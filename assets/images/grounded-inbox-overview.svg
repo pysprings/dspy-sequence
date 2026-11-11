@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 230" width="980" height="230" font-family="Helvetica, Arial, sans-serif">
+  <title>Overview of the grounded inbox</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+    <style>
+      .pred  { fill: #d9f3f0; stroke: #2a9d8f; stroke-width: 2; }
+      .code  { fill: #f0f0f0; stroke: #888; stroke-width: 2; }
+      .data  { fill: #fff; stroke: #555; stroke-width: 1.5; }
+      .name  { font-size: 16px; font-weight: bold; fill: #222; text-anchor: middle; }
+      .kind  { font-size: 12px; fill: #555; text-anchor: middle; }
+      .label { font-size: 13px; font-style: italic; fill: #333; text-anchor: middle; }
+      .flow  { fill: none; stroke: #555; stroke-width: 1.6; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="980" height="230" fill="#fefefe"/>
+
+  <rect class="data" x="20" y="32" width="110" height="56" rx="28"/>
+  <text class="name" x="75" y="65">email</text>
+  <path class="flow" d="M 130 60 H 209"/>
+
+  <rect class="pred" x="210" y="28" width="150" height="64" rx="8"/>
+  <text class="name" x="285" y="56">triage</text>
+  <text class="kind" x="285" y="76">label the email</text>
+  <path class="flow" d="M 360 60 H 599"/>
+
+  <path class="flow" d="M 285 92 V 143"/>
+  <text class="label" x="345" y="122">bug reports only</text>
+  <rect class="pred" x="210" y="144" width="150" height="64" rx="8"/>
+  <text class="name" x="285" y="172">extract</text>
+  <text class="kind" x="285" y="192">write a ticket</text>
+
+  <rect class="data" x="420" y="148" width="150" height="56" rx="8"/>
+  <text class="name" x="495" y="172" style="font-size:14px">knowledge base</text>
+  <text class="kind" x="495" y="190">32 passages</text>
+  <path class="flow" d="M 570 176 H 599"/>
+
+  <rect class="code" x="600" y="144" width="150" height="64" rx="8"/>
+  <text class="name" x="675" y="172">search</text>
+  <text class="kind" x="675" y="192">find 3 passages</text>
+  <path class="flow" d="M 675 144 V 93"/>
+
+  <rect class="pred" x="600" y="28" width="150" height="64" rx="8"/>
+  <text class="name" x="675" y="56">draft</text>
+  <text class="kind" x="675" y="76">write the reply</text>
+  <path class="flow" d="M 750 60 H 829"/>
+
+  <rect class="data" x="830" y="32" width="130" height="56" rx="28"/>
+  <text class="name" x="895" y="65">reply</text>
+</svg>
